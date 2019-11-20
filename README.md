@@ -1,2 +1,2 @@
 # game-gurus
-Building a boardgame for HRO
+Building a digital component for our board game; Napalm: The last survivors.
