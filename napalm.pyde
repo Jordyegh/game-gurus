@@ -1,5 +1,8 @@
-import functions
+from functions import *
+import TextBox
+import elements
 import start_screen
+import player_selection
 
 # functions.py is where all the useful functions are located (It makes your life easier)
 # start_screen.py is for the start screen
@@ -8,6 +11,7 @@ currentScreen = 'start'
 
 def setup():
     size(1600, 900)
+    player_selection.setup()
 
 def draw():
     fill(255)
@@ -16,3 +20,16 @@ def draw():
     
     if currentScreen == 'start':
         start_screen.draw()
+    elif currentScreen == 'player_selecting':
+        player_selection.draw()
+        
+def mousePressed():
+    global currentScreen
+    
+    if currentScreen == 'start':
+        currentScreen = 'player_selecting'
+    else:
+        elements.mousePressed()
+        
+def keyPressed():
+    elements.keyPressed()
