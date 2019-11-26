@@ -6,17 +6,17 @@ tick = 0                                        # Tick is used like a clock, it 
 
 def draw():
     global screenSize, center, tick
-    
+
     fade = tick * 10
     flameSpeed = [tick, tick / 1.5]
-    
+
     addImage('/img/backgroundWoods.png', [center[0], 0], [1600, 900])
     addText('Napalm', [500, 250], '255', 200, 'scorch')
     addText('The Last Survivors', [500, 350], '255', 50, 'scorch')
     addText('Click anywhere', [500, center[1] + 150], str(35 + toPulse(fade, 220)), 35)
     addText('To start the game', [500, center[1] + 200], str(35 + toPulse(fade, 220)), 35)
 
-    addImage('/img/fire.png', [screenSize[0] - 300, screenSize[1] - 200 - toPulse(flameSpeed[0], 50)], [600, 200 + toPulse(flameSpeed[0], 50)])
-    addImage('/img/fire_reverse.png', [screenSize[0] - 275, screenSize[1] - 200 - toPulse(flameSpeed[1], 75)], [500, 200 + toPulse(flameSpeed[1], 75)])
-    
+    addImage('/img/fire.png', [screenSize[0] - 350, screenSize[1] - 175 - toPulse(flameSpeed[0], 50)], [600, 200 + toPulse(flameSpeed[0], 50)])
+    addImage('/img/fire_reverse.png', [screenSize[0] - 275, screenSize[1] - 175 - toPulse(flameSpeed[1], 75)], [500, 200 + toPulse(flameSpeed[1], 75)])
+
     tick = tick + 1
