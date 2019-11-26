@@ -16,7 +16,7 @@ def mousePressed():
     
     for element in elements:
         if mouseX >= element.borders['left'] and mouseX <= element.borders['right'] and mouseY >= element.borders['top'] and mouseY <= element.borders['bottom']:
-            if element.type == 'textbox':
+            if element.type == 'textbox' and not typing:
                 element.placeHolder = ''
                 element.state = 'active'
                 typing = True
@@ -28,7 +28,6 @@ def keyPressed():
         for element in elements:
             if element.type == 'textbox' and element.state == 'active':
                 txt = element.placeHolder
-                print(keyCode)
                 if ((keyCode >= 65 and keyCode <= 90) or (keyCode >= 48 and keyCode <= 57)) and len(txt) < 8:
                     element.placeHolder = txt + str(key)
                 elif keyCode == 8 and len(txt) > 0:
