@@ -9,17 +9,12 @@ def draw():
     
     fade = tick * 3.5
     flameSpeed = [tick / 1.5, tick / 2.5]
+    addImage('/img/backgroundWoods.png', [center[0], 0], [1600, 900])
+    addText('Napalm:', [500, 250], '255', 200)
+    addText('The Last Survivors', [500, 350], '255', 50)
+    addText('Click anywhere', [500, center[1] + 150], str(toPulse(fade, 255)), 35)
+    addText('To start the game', [500, center[1] + 200], str(toPulse(fade, 255)), 35)
 
-    addText('Napalm:', [center[0], center[1]], '0', 200)
-    addText('The Last Survivors', [center[0], center[1] + 110], '0', 50)
-    addText('Click anywhere', [center[0], center[1] + 250], str(toPulse(fade, 255)), 35)
-    addText('To start the game', [center[0], center[1] + 300], str(toPulse(fade, 255)), 35)
-    
-    addImage('/img/logo.jpeg', [center[0], 0], [200, 300])
-    
-    addImage('/img/fire.png', [300, screenSize[1] - 200 - toPulse(flameSpeed[0], 50)], [600, 200 + toPulse(flameSpeed[0], 50)])
-    addImage('/img/fire_reverse.png', [275, screenSize[1] - 200 - toPulse(flameSpeed[1], 75)], [500, 200 + toPulse(flameSpeed[1], 75)])
-    
     addImage('/img/fire.png', [screenSize[0] - 300, screenSize[1] - 200 - toPulse(flameSpeed[0], 50)], [600, 200 + toPulse(flameSpeed[0], 50)])
     addImage('/img/fire_reverse.png', [screenSize[0] - 275, screenSize[1] - 200 - toPulse(flameSpeed[1], 75)], [500, 200 + toPulse(flameSpeed[1], 75)])
     
