@@ -10,7 +10,7 @@ import player_selection
 currentScreen = 'start'
 
 def setup():
-    size(1600, 900)
+    size(1610, 900)
     player_selection.setup()
 
 def draw():
