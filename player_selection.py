@@ -14,6 +14,7 @@ def setup():
 def draw():
     global screenSize, center, tick
     
+    addImage('/img/backgroundWoods.png', [center[0], 0], [1600, 900])
     addText('Player Selection', [center[0], 75], '0', 64)
 
     tick = tick + 1
