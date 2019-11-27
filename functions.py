@@ -33,7 +33,6 @@ def addText(txt, pos, txtColor, txtSize, font = '', centerVert = False):
 def addImage(src, pos, imgSize):
     img = loadImage(src)
     img.resize(imgSize[0], imgSize[1])
-    
     image(img, pos[0] - imgSize[0] / 2, pos[1])
 
 # Use this for placing figures on the screen

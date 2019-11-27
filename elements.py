@@ -7,7 +7,7 @@ def updateElements():
         
         if mouseX >= element.borders['left'] and mouseX <= element.borders['right'] and mouseY >= element.borders['top'] and mouseY <= element.borders['bottom']:
             if element.type == 'textbox':
-                element.fillColor = '#EEEEEE'
+                element.fillColor = '#999999'
         elif element.fillColor != element.origFillColor and element.state != 'active':
             element.fillColor = element.origFillColor
             
