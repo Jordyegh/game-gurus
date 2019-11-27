@@ -7,9 +7,9 @@ center = [screenSize[0] / 2, screenSize[1] / 2] # Center of our screen, [0] is X
 tick = 0                                        # Tick is used like a clock, it gets incremented each frame, this can be useful for animations
 
 def setup():
-    TextBox('Player 1', [center[0], center[1]], [250, 50], '225,245,255', '0')
-    TextBox('Player 2', [center[0], center[1] + 100], [250, 50], '225,245,255', '0')
-    TextBox('Player 3', [center[0], center[1] + 200], [250, 50], '225,245,255', '0')
+    TextBox('Player 1', [center[0], center[1]], [250, 50], '225', '0')
+    TextBox('Player 2', [center[0], center[1] + 100], [250, 50], '225', '0')
+    TextBox('Player 3', [center[0], center[1] + 200], [250, 50], '225', '0')
 
 def draw():
     global screenSize, center, tick

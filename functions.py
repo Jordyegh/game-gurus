@@ -1,4 +1,5 @@
 fonts = {}
+images = {}
 
 def setup():
     global fonts
@@ -31,7 +32,12 @@ def addText(txt, pos, txtColor, txtSize, font = '', centerVert = False):
 # Use this for placing images on the screen
 # addImage(IMG SOURCE|string, POSITION|list:2, IMG SIZE|list:2)
 def addImage(src, pos, imgSize):
-    img = loadImage(src)
+    global images
+    
+    if not src in images:
+        images[src] = loadImage(src)
+    
+    img = images[src]
     img.resize(imgSize[0], imgSize[1])
     image(img, pos[0] - imgSize[0] / 2, pos[1])
 

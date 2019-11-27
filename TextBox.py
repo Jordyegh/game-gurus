@@ -23,7 +23,7 @@ class TextBox:
         if len(self.placeHolder) > 0:
             functions.addText(self.placeHolder, [self.pos[0], self.pos[1] + self.boxSize[1] / 2 - 5], self.txtColor, self.boxSize[1])
         
-        stroke('#DDDDFF')
+        stroke('#999999')
         strokeWeight(2)
         line(self.pos[0] - self.boxSize[0] / 2, self.pos[1] + self.boxSize[1] / 2, self.pos[0] + self.boxSize[0] / 2, self.pos[1] + self.boxSize[1] / 2)
     
