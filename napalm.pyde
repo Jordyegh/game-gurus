@@ -1,4 +1,4 @@
-from functions import *
+import functions
 import TextBox
 import elements
 import start_screen
@@ -11,6 +11,7 @@ currentScreen = 'start'
 
 def setup():
     size(1600, 900)
+    functions.setup()
     player_selection.setup()
 
 def draw():
