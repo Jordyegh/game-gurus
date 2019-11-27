@@ -14,8 +14,14 @@ def setup():
 def draw():
     global screenSize, center, tick
     
+    flameSpeed = [tick / 3.5, tick / 5]
+    
     addImage('/img/backgroundWoods.png', [center[0], 0], [1600, 900])
-    addText('Player Selection', [center[0], 75], '0', 64)
+    addText('Player Selection', [375, 75], '255', 64, 'scorch')
+    addText('START GAME', [screenSize[0] - 350, 250], '255', 48, 'scorch')
+    
+    addImage('/img/fire.png', [screenSize[0] - 350, screenSize[1] - 175 - toPulse(flameSpeed[0], 50)], [600, 200])
+    addImage('/img/fire_reverse.png', [screenSize[0] - 275, screenSize[1] - 175 - toPulse(flameSpeed[1], 75)], [500, 200])
 
     tick = tick + 1
     
