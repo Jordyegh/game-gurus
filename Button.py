@@ -12,6 +12,7 @@ class Button:
         self.borderColor = borderColor
         self.txtColor = txtColor
         self.txtSize = 32
+        self.state = 'ready'
         
         if initiate:
             self.initiate()
@@ -30,4 +31,8 @@ class Button:
             
         line(self.pos[0] - txtWidth / 2, self.pos[1] + self.txtSize / 2, self.pos[0] + txtWidth / 2, self.pos[1] + self.txtSize / 2)
     
-        self.borders = {'left': self.pos[0] - txtWidth / 2, 'right': self.pos[0] + txtWidth / 2, 'top': self.pos[1] - self.txtSize / 2, 'bottom': self.pos[1] + self.txtSize / 2}
+        left = self.pos[0] - (txtWidth + self.padding[0]) / 2
+        right = self.pos[0] + (txtWidth + self.padding[0]) / 2
+        top = self.pos[1] - (self.txtSize + self.padding[1]) / 2
+        bottom = self.pos[1] + (self.txtSize + self.padding[1]) / 2
+        self.borders = {'left': left, 'right': right, 'top': top, 'bottom': bottom}

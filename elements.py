@@ -9,7 +9,7 @@ def updateElements():
             if element.type == 'textbox':
                 element.fillColor = '#ffffff'
             elif element.type == 'button':
-                element.filleColor = '#ffffff'
+                element.fillColor = '#ffffff'
         elif hasattr(element, 'origFillColor'):
             if element.fillColor != element.origFillColor and element.state != 'active':
                 element.fillColor = element.origFillColor
