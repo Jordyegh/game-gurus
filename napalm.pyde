@@ -5,7 +5,7 @@ import start_screen
 import player_selection
 
 # functions.py is where all the useful functions are located (It makes your life easier)
-# start_screen.py is for the start screen
+# start_screen.py is for the start screen blablatest
 
 currentScreen = 'start'
 
