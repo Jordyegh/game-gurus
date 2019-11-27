@@ -1,16 +1,17 @@
-from functions import *
+import functions
 import TextBox
 import elements
 import start_screen
 import player_selection
 
 # functions.py is where all the useful functions are located (It makes your life easier)
-# start_screen.py is for the start screen
+# start_screen.py is for the start screen!
 
 currentScreen = 'start'
 
 def setup():
-    size(1610, 900)
+    size(1600, 900)
+    functions.setup()
     player_selection.setup()
 
 def draw():

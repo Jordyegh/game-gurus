@@ -7,20 +7,15 @@ tick = 0                                        # Tick is used like a clock, it 
 def draw():
     global screenSize, center, tick
     
-    fade = tick * 3.5
+    fade = tick * 12.5
     flameSpeed = [tick / 1.5, tick / 2.5]
+    addImage('/img/backgroundWoods.png', [center[0], 0], [1600, 900])
+    addText('Napalm', [550, 250], '255', 200, 'scorch')
+    addText('The Last Survivors', [550, 350], '255', 50, 'scorch')
+    addText('Click anywhere', [550, center[1] + 150], str(35 + toPulse(fade, 220)), 35)
+    addText('To start the game', [550, center[1] + 200], str(35 + toPulse(fade, 220)), 35)
 
-    addText('Napalm:', [center[0], center[1]], '0', 200)
-    addText('The Last Survivors', [center[0], center[1] + 110], '0', 50)
-    addText('Click anywhere', [center[0], center[1] + 250], str(toPulse(fade, 255)), 35)
-    addText('To start the game', [center[0], center[1] + 300], str(toPulse(fade, 255)), 35)
-    
-    addImage('/img/logo.jpeg', [center[0], 0], [200, 300])
-    
-    addImage('/img/fire.png', [300, screenSize[1] - 200 - toPulse(flameSpeed[0], 50)], [600, 200 + toPulse(flameSpeed[0], 50)])
-    addImage('/img/fire_reverse.png', [275, screenSize[1] - 200 - toPulse(flameSpeed[1], 75)], [500, 200 + toPulse(flameSpeed[1], 75)])
-    
-    addImage('/img/fire.png', [screenSize[0] - 300, screenSize[1] - 200 - toPulse(flameSpeed[0], 50)], [600, 200 + toPulse(flameSpeed[0], 50)])
-    addImage('/img/fire_reverse.png', [screenSize[0] - 275, screenSize[1] - 200 - toPulse(flameSpeed[1], 75)], [500, 200 + toPulse(flameSpeed[1], 75)])
+    addImage('/img/fire.png', [screenSize[0] - 350, screenSize[1] - 175 - toPulse(flameSpeed[0], 50)], [600, 200 + toPulse(flameSpeed[0], 50)])
+    addImage('/img/fire_reverse.png', [screenSize[0] - 275, screenSize[1] - 175 - toPulse(flameSpeed[1], 75)], [500, 200 + toPulse(flameSpeed[1], 75)])
     
     tick = tick + 1
