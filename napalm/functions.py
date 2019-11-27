@@ -1,9 +1,3 @@
-fonts = {}
-
-def setup():
-    fonts['scorch'] = createFont('ScorchedEarthDEMO-KCFonts.otf', 32)
-    fonts['default'] = createFont('Arial', 32)
-
 # This function accepts color as #fff, #ffffff, 255,255,255 and 255 and coverts it to an acceptable color code
 # toColor(COLOR|string)
 def toColor(sColor):
@@ -17,12 +11,8 @@ def toColor(sColor):
 
 # Use this for placing text on the screen
 # addText(TEXT|string, POSITION|list:2, COLOR|string in rgb or hex, FONT SIZE|int)
-def addText(txt, pos, txtColor, txtSize, font = '', centerVert = False):
-    global fonts
-    
+def addText(txt, pos, txtColor, txtSize, centerVert = False):
     toColor(txtColor)
-    
-    textFont(fonts[font] if len(font) > 0 else fonts['default'])
     textSize(txtSize)
     text(txt, pos[0] - (textWidth(txt) / 2), pos[1] - (txtSize / 2) if centerVert else pos[1])
 
