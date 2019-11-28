@@ -13,5 +13,6 @@ def draw():
     addImage('/img/Dashboard_backpack.png', [1505, 200], [275, 470])
     addImage('/img/Dashboard_dice.png', [95, 200], [275, 470])
     addImage('/img/Dashboard_fight.png', [800, 655], [470, 275])
+    
     addText('Player Dashboard', [375, 75], '255', 64, 'scorch')
     

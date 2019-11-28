@@ -10,11 +10,11 @@ buttons = {}
 curScreen = ''
 
 def setup():
-    TextBox('Player 1', [center[0], center[1]], [250, 50], '225', '0')
-    TextBox('Player 2', [center[0], center[1] + 100], [250, 50], '225', '0')
-    TextBox('Player 3', [center[0], center[1] + 200], [250, 50], '225', '0')
-
+    buttons['addPlayer'] = Button('+', [100, 100], [150, 5], '200,255,200', 'none', '0', '150,255,150')
     buttons['startGame'] = Button('START GAME', [screenSize[0] - 350, 200], [50, 25], '200', 'none', '0')
+    
+    TextBox('Player 1', [150, center[1]], [150, 50], '225', '0', 10)
+    TextBox('Player 2', [250, center[1]], [150, 50], '225', '0')
 
 def draw():
     global screenSize, center, tick, curScreen
