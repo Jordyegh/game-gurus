@@ -8,10 +8,10 @@ center = [screenSize[0] / 2, screenSize[1] / 2] # Center of our screen, [0] is X
 tick = 0                                        # Tick is used like a clock, it gets incremented each frame, this can be useful for animations
 
 def setup():
-    TextBox('Player 1', [250, 350], [250, 50], '200', '0')
-    TextBox('Player 2', [250, 350 + 100], [250, 50], '200', '0')
-    TextBox('Player 3', [250, 350 + 200], [250, 50], '200', '0')
-    TextBox('Player 4', [250, 350 + 300], [250, 50], '200', '0')
+    TextBox('Player 1', [300, 350], [250, 50], '200', '0')
+    TextBox('Player 2', [300, 350 + 100], [250, 50], '200', '0')
+    TextBox('Player 3', [300, 350 + 200], [250, 50], '200', '0')
+    TextBox('Player 4', [300, 350 + 300], [250, 50], '200', '0')
     TextBox('Player 5', [650, 350], [250, 50], '200', '0')
     TextBox('Player 6', [650, 350 + 100], [250, 50], '200', '0')
     TextBox('Player 7', [650, 350 + 200], [250, 50], '200', '0')
