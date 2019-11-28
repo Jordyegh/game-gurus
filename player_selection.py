@@ -12,23 +12,23 @@ def setup():
     TextBox('Player 1', [center[0], center[1]], [250, 50], '225', '0')
     TextBox('Player 2', [center[0], center[1] + 100], [250, 50], '225', '0')
     TextBox('Player 3', [center[0], center[1] + 200], [250, 50], '225', '0')
-    
+
     buttons['startGame'] = Button('START GAME', [screenSize[0] - 350, 200], [50, 25], '200', 'none', '0')
 
 def draw():
     global screenSize, center, tick, currentScreen
-    
+
     flameSpeed = [tick / 3.5, tick / 5]
-    
+
     addImage('/img/backgroundWoods.png', [center[0], 0], [1600, 900])
     addText('Player Selection', [375, 75], '255', 64, 'scorch')
-    
+
     addImage('/img/fire.png', [screenSize[0] - 350, screenSize[1] - 175 - toPulse(flameSpeed[0], 50)], [600, 200])
     addImage('/img/fire_reverse.png', [screenSize[0] - 275, screenSize[1] - 175 - toPulse(flameSpeed[1], 75)], [500, 200])
 
     #if buttons['startGame'].state == 'clicked':
         #currentScreen = 'start_screen'
-    
+
     tick = tick + 1
-    
+
     elements.updateElements()

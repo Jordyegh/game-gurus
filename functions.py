@@ -3,7 +3,7 @@ images = {}
 
 def setup():
     global fonts
-    
+
     fonts['default'] = createFont('Arial', 32)
     fonts['scorch'] = createFont('Scorchedearth.otf', 32)
 
@@ -22,9 +22,9 @@ def toColor(sColor):
 # addText(TEXT|string, POSITION|list:2, COLOR|string in rgb or hex, FONT SIZE|int)
 def addText(txt, pos, txtColor, txtSize, font = '', centerVert = False):
     global fonts
-    
+
     toColor(txtColor)
-    
+
     textFont(fonts[font] if len(font) > 0 else fonts['default'])
     textSize(txtSize)
     text(txt, pos[0] - (textWidth(txt) / 2), pos[1] - (txtSize / 2) if centerVert else pos[1])
@@ -33,10 +33,10 @@ def addText(txt, pos, txtColor, txtSize, font = '', centerVert = False):
 # addImage(IMG SOURCE|string, POSITION|list:2, IMG SIZE|list:2)
 def addImage(src, pos, imgSize):
     global images
-    
+
     if not src in images:
         images[src] = loadImage(src)
-    
+
     img = images[src]
     img.resize(imgSize[0], imgSize[1])
     image(img, pos[0] - imgSize[0] / 2, pos[1])
@@ -45,12 +45,12 @@ def addImage(src, pos, imgSize):
 # addFigure(FIGURE|string, POSITION|list:2, FIG SIZE|list:2, FIG COLOR|string, STROKE COLOR|string)
 def addFigure(fig, pos, figSize, figColor, strokeColor = 'none'):
     toColor(figColor)
-    
+
     if strokeColor == 'none':
         noStroke()
     else:
         stroke(strokeColor)
-    
+
     if fig == 'rect':
         rect(pos[0] - (figSize[0] / 2), pos[1] - (figSize[1] / 2), figSize[0], figSize[1])
 

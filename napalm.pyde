@@ -3,6 +3,7 @@ import TextBox
 import elements
 import start_screen
 import player_selection
+import player_dashboard
 
 # functions.py is where all the useful functions are located (It makes your life easier)
 # start_screen.py is for the start screen!
@@ -20,7 +21,8 @@ def draw():
     rect(0, 0, 1600, 900)
     
     if currentScreen == 'start':
-        start_screen.draw()
+        #start_screen.draw()
+        player_dashboard.draw()
     elif currentScreen == 'player_selecting':
         player_selection.draw()
         
