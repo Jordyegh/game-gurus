@@ -31,7 +31,7 @@ def addText(txt, pos, txtColor, txtSize, font = '', centerVert = False):
 
 # Use this for placing images on the screen
 # addImage(IMG SOURCE|string, POSITION|list:2, IMG SIZE|list:2)
-def addImage(src, pos, imgSize):
+def addImage(src, pos, imgSize, VertAlign = False):
     global images
 
     if not src in images:
@@ -39,7 +39,7 @@ def addImage(src, pos, imgSize):
 
     img = images[src]
     img.resize(imgSize[0], imgSize[1])
-    image(img, pos[0] - imgSize[0] / 2, pos[1])
+    image(img, pos[0] - imgSize[0] / 2, pos[1] if not VertAlign else pos[1] - imgSize[1] / 2)
 
 # Use this for placing figures on the screen
 # addFigure(FIGURE|string, POSITION|list:2, FIG SIZE|list:2, FIG COLOR|string, STROKE COLOR|string)
