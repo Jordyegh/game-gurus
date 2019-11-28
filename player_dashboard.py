@@ -12,6 +12,11 @@ curScreen = ''
 
 def draw():
     global screenSize, center, tick
+
+
+    
+    addText('Player Dashboard', [375, 75], '255', 64, 'scorch')
+
     
     addImage('/img/Dashboard_background.jpg', [center[0], 0], [1600, 900])
     addImage('/img/halfcircle3.png', [1505, 200], [275, 470])
