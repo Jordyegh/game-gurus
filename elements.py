@@ -7,7 +7,7 @@ def updateElements():
         
         if mouseX >= element.borders['left'] and mouseX <= element.borders['right'] and mouseY >= element.borders['top'] and mouseY <= element.borders['bottom']:
             if element.type == 'textbox':
-                element.fillColor = '#ffffff'
+                element.fillColor = '#444444'
             elif element.type == 'button':
                 element.fillColor = element.hoverColor
         elif hasattr(element, 'origFillColor'):
