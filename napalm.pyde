@@ -4,7 +4,7 @@ import elements
 import start_screen
 import player_selection
 import player_dashboard
-add_library("sound")
+#add_library("sound")
 
 # functions.py is where all the useful functions are located (It makes your life easier)
 # start_screen.py is for the start screen!
@@ -16,10 +16,10 @@ def setup():
     functions.setup()
     player_selection.setup()
     
-    s = SoundFile(this,"soundtest.mp3")
-    s.amp(0.50)
-    s.play()
-    s.loop()
+    #s = SoundFile(this,"soundtest.mp3")
+    #s.amp(0.50)
+    #s.play()
+    #s.loop()
 def draw():
     fill(255)
     noStroke()
