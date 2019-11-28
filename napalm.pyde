@@ -29,6 +29,7 @@ def mousePressed():
     
     if currentScreen == 'start':
         currentScreen = 'player_selecting'
+        player_selection.tick = start_screen.tick
     else:
         elements.mousePressed()
         
