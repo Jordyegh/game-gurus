@@ -15,29 +15,36 @@ def setup():
     size(1600, 900)
     functions.setup()
     player_selection.setup()
-    
+
     s = SoundFile(this,"soundtest.mp3")
     s.amp(0.50)
     s.play()
     s.loop()
 def draw():
+    global currentScreen
+
     fill(255)
     noStroke()
     rect(0, 0, 1600, 900)
     if currentScreen == 'start':
         start_screen.draw()
-    
+
     elif currentScreen == 'player_selecting':
         player_selection.draw()
-        
+    elif currentScreen == 'player_dashboard':
+        player_dashboard.draw()
+
+    if player_selection.curScreen == 'player_dashboard':
+        currentScreen = 'player_dashboard'
+
 def mousePressed():
     global currentScreen
-    
+
     if currentScreen == 'start':
         currentScreen = 'player_selecting'
         player_selection.tick = start_screen.tick
     else:
         elements.mousePressed()
-        
+
 def keyPressed():
     elements.keyPressed()
