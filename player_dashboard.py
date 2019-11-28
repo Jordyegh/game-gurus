@@ -14,4 +14,8 @@ def draw():
     addImage('/img/Dashboard_dice.png', [95, 200], [275, 470])
     addImage('/img/Dashboard_fight.png', [800, 655], [470, 275])
     addText('Player Dashboard', [375, 75], '255', 64, 'scorch')
-    
+    addText('\'s turn', [850, 200], '255', 64, 'scorch') #Need to add Currentplayer(?) + variable to this string. or sumtin'
+    addText('Keys', [850, 200 + 50], '255', 40, 'scorch') #Need to add a + Currentkeys(?) variable to this string. or sumtin'
+    addText('Use item', [1505, 200], '255', 40) #concept description and font
+    addText('Roll dice', [95, 200], '255', 40) #concept description and font
+    addText('Fight enemy', [800, 655], '255', 40) #concept description and font

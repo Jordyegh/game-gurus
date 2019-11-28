@@ -21,8 +21,8 @@ def draw():
     rect(0, 0, 1600, 900)
     
     if currentScreen == 'start':
-        #start_screen.draw()
-        player_dashboard.draw()
+        start_screen.draw()
+    
     elif currentScreen == 'player_selecting':
         player_selection.draw()
         
