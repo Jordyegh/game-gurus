@@ -7,6 +7,7 @@ screenSize = [1600, 900]                        # Size of our screen, [0] is Wid
 center = [screenSize[0] / 2, screenSize[1] / 2] # Center of our screen, [0] is X and [1] is Y
 tick = 0                                        # Tick is used like a clock, it gets incremented each frame, this can be useful for animations
 buttons = {}
+curScreen = ''
 
 def setup():
     TextBox('Player 1', [center[0], center[1]], [250, 50], '225', '0')
@@ -16,7 +17,7 @@ def setup():
     buttons['startGame'] = Button('START GAME', [screenSize[0] - 350, 200], [50, 25], '200', 'none', '0')
 
 def draw():
-    global screenSize, center, tick, currentScreen
+    global screenSize, center, tick, curScreen
 
     flameSpeed = [tick / 3.5, tick / 5]
 
@@ -26,8 +27,8 @@ def draw():
     addImage('/img/fire.png', [screenSize[0] - 350, screenSize[1] - 175 - toPulse(flameSpeed[0], 50)], [600, 200])
     addImage('/img/fire_reverse.png', [screenSize[0] - 275, screenSize[1] - 175 - toPulse(flameSpeed[1], 75)], [500, 200])
 
-    #if buttons['startGame'].state == 'clicked':
-        #currentScreen = 'start_screen'
+    if buttons['startGame'].state == 'clicked':
+        curScreen = 'player_dashboard'
 
     tick = tick + 1
 

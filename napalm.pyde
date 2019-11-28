@@ -16,15 +16,21 @@ def setup():
     player_selection.setup()
 
 def draw():
+    global currentScreen
+    
     fill(255)
     noStroke()
     rect(0, 0, 1600, 900)
     
     if currentScreen == 'start':
-        #start_screen.draw()
-        player_dashboard.draw()
+        start_screen.draw()
     elif currentScreen == 'player_selecting':
         player_selection.draw()
+    elif currentScreen == 'player_dashboard':
+        player_dashboard.draw()
+
+    if player_selection.curScreen == 'player_dashboard':
+        currentScreen = 'player_dashboard'
         
 def mousePressed():
     global currentScreen
