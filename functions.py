@@ -43,9 +43,13 @@ def addImage(src, pos, imgSize):
 
 # Use this for placing figures on the screen
 # addFigure(FIGURE|string, POSITION|list:2, FIG SIZE|list:2, FIG COLOR|string, STROKE COLOR|string)
-def addFigure(fig, pos, figSize, figColor, strokeColor = '#ffffff'):
+def addFigure(fig, pos, figSize, figColor, strokeColor = 'none'):
     toColor(figColor)
-    stroke(strokeColor)
+    
+    if strokeColor == 'none':
+        noStroke()
+    else:
+        stroke(strokeColor)
     
     if fig == 'rect':
         rect(pos[0] - (figSize[0] / 2), pos[1] - (figSize[1] / 2), figSize[0], figSize[1])

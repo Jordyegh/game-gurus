@@ -23,6 +23,8 @@ def mousePressed():
                 element.placeHolder = ''
                 element.state = 'active'
                 typing = True
+            elif element.type == 'button':
+                element.state = 'clicked'
                 
 def keyPressed():
     global typing
