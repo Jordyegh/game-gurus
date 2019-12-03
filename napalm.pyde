@@ -1,3 +1,4 @@
+add_library('sound')
 import functions
 import TextBox
 import elements
@@ -14,7 +15,10 @@ def setup():
     size(1600, 900)
     functions.setup()
     player_selection.setup()
-
+    s = SoundFile(this,"napalmSoundtrack.mp3")
+    s.amp(0.50)
+    s.play()
+    s.loop()
 def draw():
     global currentScreen
     

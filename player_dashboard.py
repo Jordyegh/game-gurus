@@ -9,7 +9,7 @@ tick = 0                                        # Tick is used like a clock, it 
 
 def draw():
     global screenSize, center, tick
-    addImage('/img/Dashboard_background2.jpg', [center[0], 0], [1600, 900])
+    addImage('/img/Dashboard_background.jpg', [center[0], 0], [1600, 900])
     addImage('/img/Dashboard_backpack.png', [1505, 200], [275, 470])
     addImage('/img/Dashboard_dice.png', [95, 200], [275, 470])
     addImage('/img/Dashboard_fight.png', [800, 655], [470, 275])
