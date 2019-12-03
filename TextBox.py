@@ -2,7 +2,7 @@ import functions
 import elements
 
 class TextBox:
-    def __init__(self, placeHolder = '', pos = [], padding = [], fillColor = '', txtColor = '', txtSize = 0, initiate = False):
+    def __init__(self, placeHolder = '', pos = [], padding = [], fillColor = '', txtColor = '', txtSize = 0, tag = '', initiate = False):
         self.type = 'textbox'
         self.placeHolder = placeHolder
         self.pos = pos
@@ -12,6 +12,7 @@ class TextBox:
         self.txtColor = txtColor
         self.txtSize = txtSize if txtSize > 0 else 32
         self.state = 'ready'
+        self.tag = tag
         self.tick = 0
         
         if initiate:
@@ -44,3 +45,10 @@ class TextBox:
     
         self.borders = {'left': left, 'right': right, 'top': top, 'bottom': bottom}
         self.tick = self.tick + 1
+        
+    def destroy(self):
+        for element in elements.elements:
+            if element == self:
+                elements.elements.remove(element)
+        
+        del self
