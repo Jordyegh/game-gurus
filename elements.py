@@ -37,7 +37,7 @@ def keyPressed():
                     element.placeHolder = txt + str(key)
                 elif keyCode == 8 and len(txt) > 0:
                     element.placeHolder = txt[0:len(txt) - 1]
-                elif keyCode == 10:
+                elif keyCode == 10 and len(txt) >= 3:
                     element.state = 'ready'
                     typing = False
                     

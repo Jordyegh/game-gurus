@@ -47,6 +47,4 @@ class Button:
             if element == self:
                 elements.elements.remove(element)
                 
-        print('Removed ' + self.placeHolder)
-                
         del self
