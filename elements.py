@@ -17,14 +17,15 @@ def updateElements():
 def mousePressed():
     global typing
     
-    for element in elements:
-        if mouseX >= element.borders['left'] and mouseX <= element.borders['right'] and mouseY >= element.borders['top'] and mouseY <= element.borders['bottom']:
-            if element.type == 'textbox' and not typing:
-                element.placeHolder = ''
-                element.state = 'active'
-                typing = True
-            elif element.type == 'button':
-                element.state = 'clicked'
+    if not typing:
+        for element in elements:
+            if mouseX >= element.borders['left'] and mouseX <= element.borders['right'] and mouseY >= element.borders['top'] and mouseY <= element.borders['bottom']:
+                if element.type == 'textbox' and not typing:
+                    element.placeHolder = ''
+                    element.state = 'active'
+                    typing = True
+                elif element.type == 'button':
+                    element.state = 'clicked'
                 
 def keyPressed():
     global typing
@@ -37,10 +38,14 @@ def keyPressed():
                     element.placeHolder = txt + str(key)
                 elif keyCode == 8 and len(txt) > 0:
                     element.placeHolder = txt[0:len(txt) - 1]
-                elif keyCode == 10 and len(txt) >= 3:
+                elif keyCode == 10:
                     element.state = 'ready'
                     typing = False
                     
                     if len(txt) <= 0:
                         element.placeHolder = '???'
+                    elif len(txt) < 3:
+                        element.state = 'active'
+                        typing = True
+                        
             
