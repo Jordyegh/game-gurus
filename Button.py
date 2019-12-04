@@ -2,7 +2,7 @@ import functions
 import elements
 
 class Button:
-    def __init__(self, placeHolder = '', pos = [], padding = [], fillColor = '', borderColor = 'none', txtColor = '', hoverColor = '#ffffff', txtSize = 32, initiate = False):
+    def __init__(self, placeHolder = '', pos = [], padding = [], fillColor = '', borderColor = 'none', txtColor = '', hoverColor = '#ffffff', txtSize = 32, initiate = False, linked = []):
         self.type = 'button'
         self.placeHolder = placeHolder
         self.pos = pos
@@ -14,6 +14,7 @@ class Button:
         self.hoverColor = hoverColor
         self.txtSize = 32
         self.state = 'ready'
+        self.linked = linked
 
         if initiate:
             self.initiate()
@@ -26,6 +27,7 @@ class Button:
             
         if self.placeHolder[0:5] == '/img/':
             functions.addImage(self.placeHolder, self.pos, self.padding, True)
+            txtWidth = 0
         else:
             functions.addFigure('rect', self.pos, [txtWidth + self.padding[0], self.txtSize + self.padding[1]], self.fillColor, 'none' if self.borderColor == 'none' else self.borderColor)
     
@@ -39,3 +41,10 @@ class Button:
         top = self.pos[1] - (self.txtSize + self.padding[1]) / 2
         bottom = self.pos[1] + (self.txtSize + self.padding[1]) / 2
         self.borders = {'left': left, 'right': right, 'top': top, 'bottom': bottom}
+        
+    def destroy(self):
+        for i in range(0, len(elements.elements) - 1):
+            if elements.elements[i] == self:
+                del elements.elements[i]
+                
+        del self
