@@ -7,9 +7,9 @@ def updateElements():
         
         if mouseX >= element.borders['left'] and mouseX <= element.borders['right'] and mouseY >= element.borders['top'] and mouseY <= element.borders['bottom']:
             if element.type == 'textbox':
-                element.fillColor = '#ffffff'
+                element.fillColor = '#444444'
             elif element.type == 'button':
-                element.fillColor = '#ffffff'
+                element.fillColor = element.hoverColor
         elif hasattr(element, 'origFillColor'):
             if element.fillColor != element.origFillColor and element.state != 'active':
                 element.fillColor = element.origFillColor
@@ -17,12 +17,15 @@ def updateElements():
 def mousePressed():
     global typing
     
-    for element in elements:
-        if mouseX >= element.borders['left'] and mouseX <= element.borders['right'] and mouseY >= element.borders['top'] and mouseY <= element.borders['bottom']:
-            if element.type == 'textbox' and not typing:
-                element.placeHolder = ''
-                element.state = 'active'
-                typing = True
+    if not typing:
+        for element in elements:
+            if mouseX >= element.borders['left'] and mouseX <= element.borders['right'] and mouseY >= element.borders['top'] and mouseY <= element.borders['bottom']:
+                if element.type == 'textbox' and not typing:
+                    element.placeHolder = ''
+                    element.state = 'active'
+                    typing = True
+                elif element.type == 'button':
+                    element.state = 'clicked'
                 
 def keyPressed():
     global typing
@@ -41,4 +44,8 @@ def keyPressed():
                     
                     if len(txt) <= 0:
                         element.placeHolder = '???'
+                    elif len(txt) < 3:
+                        element.state = 'active'
+                        typing = True
+                        
             

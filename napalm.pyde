@@ -4,10 +4,10 @@ import elements
 import start_screen
 import player_selection
 import manual_screen
-import dice_system
+import player_dashboard
 
 # functions.py is where all the useful functions are located (It makes your life easier)
-# start_screen.py is for the start screen!
+# start_screen.py is for the start screen
 
 currentScreen = 'start'
 
@@ -17,6 +17,8 @@ def setup():
     player_selection.setup()
 
 def draw():
+    global currentScreen
+    
     fill(255)
     noStroke()
     rect(0, 0, 1600, 900)
@@ -27,6 +29,11 @@ def draw():
         dice_system.draw()
     elif currentScreen == 'player_selecting':
         player_selection.draw()
+    elif currentScreen == 'player_dashboard':
+        player_dashboard.draw()
+
+    if player_selection.curScreen == 'player_dashboard':
+        currentScreen = 'player_dashboard'
         
 def mousePressed():
     global currentScreen
