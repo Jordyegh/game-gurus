@@ -4,6 +4,7 @@ import elements
 import start_screen
 import player_selection
 import player_dashboard
+import player_inventory
 add_library("sound")
 
 # functions.py is where all the useful functions are located (It makes your life easier)
@@ -14,7 +15,7 @@ currentScreen = 'start'
 def setup():
     size(1600, 900)
     functions.setup()
-    player_selection.setup()
+   # player_selection.setup()
 
     s = SoundFile(this,"soundtest.mp3")
     s.amp(0.50)
@@ -27,7 +28,8 @@ def draw():
     noStroke()
     rect(0, 0, 1600, 900)
     if currentScreen == 'start':
-        start_screen.draw()
+        player_inventory.setup()
+        player_inventory.draw()
 
     elif currentScreen == 'player_selecting':
         player_selection.draw()
