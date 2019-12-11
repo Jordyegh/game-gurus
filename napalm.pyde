@@ -25,8 +25,7 @@ def draw():
     
     if currentScreen == 'start':
         #start_screen.draw()
-        #manual_screen.draw()
-        dice_system.draw()
+        manual_screen.draw()
     elif currentScreen == 'player_selecting':
         player_selection.draw()
     elif currentScreen == 'player_dashboard':
