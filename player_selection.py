@@ -102,7 +102,27 @@ def draw():
             addPlayerField(button.linked[0])
 
     if buttons['startGame'].state == 'clicked':
-        curScreen = 'player_dashboard'
+        teamSize = None
+        sameSize = True
+        
+        for team in teams:
+            if len(team) > 0:
+                if teamSize == None:
+                    teamSize = len(team)
+                elif teamSize != len(team):
+                    sameSize = False
+                    
+                    break
+        
+        if teamSize == None:
+            print('You may not have empty teams!')
+        elif sameSize:
+            print('All teams have the same size')
+        else:
+            print('Error: team size is not equal')
+            
+        buttons['startGame'].state = 'ready'
+        #curScreen = 'player_dashboard'
 
     tick = tick + 1
 
