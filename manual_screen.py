@@ -34,9 +34,8 @@ def addDescription(title = 'Title', desc = 'Description', pos = [100, 100], img 
 
 def draw():
     global screenSize, center, tick, para
-    
+
     fade = tick * 2.5
-    flameSpeed = [tick / 3.5, tick / 5]
     addImage('/img/backgroundWoods.png', [center[0], 0], [1600, 900])
     
     for y in range(0, 3):
@@ -49,13 +48,6 @@ def draw():
     addText('Manual screen', [375, 75], '255', 64, 'scorch')
     addText('Tegels', [130, 175], '255', 34)
     
-    
-    
-    
     addText('Click to go next', [660, center[1] + 390], str(25 + toPulse(fade, 220)), 35)
-    
-
-    addImage('/img/fire.png', [screenSize[0] - 350, screenSize[1] - 175 - toPulse(flameSpeed[0], 50)], [600, 200])
-    addImage('/img/fire_reverse.png', [screenSize[0] - 275, screenSize[1] - 175 - toPulse(flameSpeed[1], 75)], [500, 200])
     
     tick = tick + 1
