@@ -3,6 +3,7 @@ import TextBox
 import elements
 import start_screen
 import player_selection
+import manual_screen
 import player_dashboard
 import player_inventory
 add_library("sound")
@@ -27,6 +28,7 @@ def draw():
     fill(255)
     noStroke()
     rect(0, 0, 1600, 900)
+
     if currentScreen == 'start':
         player_inventory.setup()
         player_inventory.draw()
@@ -35,9 +37,13 @@ def draw():
         player_selection.draw()
     elif currentScreen == 'player_dashboard':
         player_dashboard.draw()
+    elif currentScreen == 'manual_screen':
+        manual_screen.draw()
 
     if player_selection.curScreen == 'player_dashboard':
         currentScreen = 'player_dashboard'
+    elif player_selection.curScreen == 'manual_screen':
+        currentScreen = 'manual_screen'
 
 def mousePressed():
     global currentScreen
@@ -45,6 +51,9 @@ def mousePressed():
     if currentScreen == 'start':
         currentScreen = 'player_selecting'
         player_selection.tick = start_screen.tick
+    elif currentScreen == 'manual_screen':
+        currentScreen = 'player_selecting'
+        player_selection.curScreen = ''
     else:
         elements.mousePressed()
 
