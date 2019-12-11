@@ -23,7 +23,7 @@ para = [
          'desc': 'Dit item kan je health points terug geven\n(niet meer dan je maximale levens).\nEr zijn verschillende sterkte pleisters,\ndus de ene kan bijvoorbeeld zorgen voor\neen plus twee en de ander voor een plus 4.\nAls je pleisters gebruikt is je beurt voorbij.\n',
          'img': '/img/pleistertegel.png'},
         {'title': 'Armor', 
-         'desc': '.\n',
+         'desc': 'Dit item biedt je de mogelijkheid om meer\nhealth points te hebben dan de maximale\n5 levens die je hebt. Bij de tegel\nwordt aangeduid hoeveel extra bescherming\nje hebt. De armor werkt maar voor 50% van de\ntijd, je moet dobbelen. Dobbel je 1 t/m 3 dan\nwerkt hij niet. 4 t/m 6 werkt hij wel.',
          'img': '/img/armor.png'}
         ]
 
@@ -48,36 +48,11 @@ def draw():
     
     addText('Manual screen', [375, 75], '255', 64, 'scorch')
     addText('Tegels', [130, 175], '255', 34)
-    #addText('Primaire voorwerpen', [200, 225], '255', 24)
-    #addText('Wapentegel', [140, 255], '255', 20)
-    #addText('drie keer een is de schade wat het wapen kan', [280, 275], '255', 18)
-    #addText('aanrichten bij dit voorbeeld zou het wapen', [265, 295], '255', 18)
-    #addText('dus 3 keer 1 schade aan kunnen richten.', [258, 315], '255', 18)
-    #addText('Bij een handpistool is het bijvoorbeeld enkel 1.', [280, 335], '255', 18)
-    #addImage('/img/guntegel.png', [750, 195],[150,150])
-  
-
-    #addText('Pleister', [120, 395], '255', 20)
-    #addText('Dit item kan je health points terug geven', [260, 415], '255', 18)
-    #addText('(niet meer dan je maximale levens). ', [245, 435], '255', 18)
-    #addText('Er zijn verschillende sterkte pleisters, ', [250, 455], '255', 18)
-    #addText('dus de ene kan bijvoorbeeld zorgen voor', [260, 475], '255', 18)
-    #addText('een plus twee en de ander voor een plus 4.', [270, 495], '255', 18)
-    #addText('Als je pleisters gebruikt is je beurt voorbij.', [260, 515], '255', 18)
-    #addImage('/img/pleistertegel.png', [750, 375],[150,150])
-    
-    #addText('Armor', [110, 565], '255', 20)
-    #addText('Dit item biedt je de mogelijkheid om meer health points ', [310, 585], '255', 18)
-    #addText('te hebben dan de maximale 5 levens die je hebt. Bij de ', [310, 605], '255', 18)
-    #addText('tegel wordt aangeduid hoeveel extra bescherming je hebt. ', [320, 625], '255', 18)
-    #addText('De armor werkt maar voor 50% van de tijd, je moet dobbelen. ', [330, 645], '255', 18)
-    #addText('Dobbel je 1 t/m 3 dan werkt hij niet. 4 t/m 6 werkt hij wel.', [310, 665], '255', 18)
-    #addText('', [260, 675], '255', 18)
-    #addImage('/img/armor.png', [750, 555],[150,150])
     
     
     
-    addText('Click to go next', [650, center[1] + 350], str(25 + toPulse(fade, 220)), 35)
+    
+    addText('Click to go next', [660, center[1] + 390], str(25 + toPulse(fade, 220)), 35)
     
 
     addImage('/img/fire.png', [screenSize[0] - 350, screenSize[1] - 175 - toPulse(flameSpeed[0], 50)], [600, 200])
