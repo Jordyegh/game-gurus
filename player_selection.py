@@ -38,6 +38,7 @@ def addPlayerField(team):
 
 def setup():
     buttons['startGame'] = Button('START GAME', [screenSize[0] - 350, 200], [50, 25], '200', 'none', '0')
+    buttons['openManual'] = Button('Manual', [100, 50], [25, 10], '200', 'none', '0')
     buttons['add_to_team'] = [None, None, None, None]
     
     for i in range(0, 4):
@@ -103,6 +104,10 @@ def draw():
 
     if buttons['startGame'].state == 'clicked':
         curScreen = 'player_dashboard'
+        
+    if buttons['openManual'].state == 'clicked':
+        buttons['openManual'].state = 'ready'
+        curScreen = 'manual_screen'
 
     tick = tick + 1
 

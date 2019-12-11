@@ -31,7 +31,6 @@ def addDescription(title = 'Title', desc = 'Description', pos = [100, 100], img 
     addText(title, pos, '255', 24)
     addText(desc, [pos[0], pos[1] + 20], '255', 18)
     addImage(img, [pos[0] + 300, pos[1]], [150,150])
-    print('Teest')
 
 def draw():
     global screenSize, center, tick, para
