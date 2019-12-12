@@ -97,7 +97,7 @@ def draw():
 
                     del buttons['removePlayer' + str(i)]
 
-    for button in buttons['add_to_team']:
+
         if not button == None and button.state == 'clicked':
             button.state = 'ready'
             addPlayerField(button.linked[0])

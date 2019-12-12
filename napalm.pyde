@@ -1,3 +1,4 @@
+add_library('sound')
 import functions
 import TextBox
 import elements
@@ -6,7 +7,6 @@ import player_selection
 import manual_screen
 import player_dashboard
 import player_inventory
-add_library("sound")
 
 # functions.py is where all the useful functions are located (It makes your life easier)
 # start_screen.py is for the start screen
@@ -16,12 +16,12 @@ currentScreen = 'start'
 def setup():
     size(1600, 900)
     functions.setup()
-   # player_selection.setup()
-
-    s = SoundFile(this,"soundtest.mp3")
+    #player_selection.setup()
+    s = SoundFile(this, 'soundtrack.mp3')
     s.amp(0.50)
     s.play()
     s.loop()
+
 def draw():
     global currentScreen
 
@@ -32,7 +32,7 @@ def draw():
     if currentScreen == 'start':
         player_inventory.setup()
         player_inventory.draw()
-
+        #start_screen.draw()
     elif currentScreen == 'player_selecting':
         player_selection.draw()
     elif currentScreen == 'player_dashboard':
@@ -45,17 +45,17 @@ def draw():
     elif player_selection.curScreen == 'manual_screen':
         currentScreen = 'manual_screen'
 
-def mousePressed():
-    global currentScreen
+# def mousePressed():
+#     global currentScreen
 
-    if currentScreen == 'start':
-        currentScreen = 'player_selecting'
-        player_selection.tick = start_screen.tick
-    elif currentScreen == 'manual_screen':
-        currentScreen = 'player_selecting'
-        player_selection.curScreen = ''
-    else:
-        elements.mousePressed()
+#     if currentScreen == 'start':
+#         currentScreen = 'player_selecting'
+#         player_selection.tick = start_screen.tick
+#     elif currentScreen == 'manual_screen':
+#         currentScreen = 'player_selecting'
+#         player_selection.curScreen = ''
+#     else:
+#         elements.mousePressed()
 
 def keyPressed():
     elements.keyPressed()
