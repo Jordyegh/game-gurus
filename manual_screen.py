@@ -8,7 +8,7 @@ center = [screenSize[0] / 2, screenSize[1] / 2] # Center of our screen, [0] is X
 tick = 0                                        # Tick is used like a clock, it gets incremented each frame, this can be useful for animations
 para = [
         {'title': 'Wapentegel', 
-         'desc': 'drie keer een is de schade wat het wapen kan\naanrichten bij dit voorbeeld zou het wapen\ndus 3 keer 1 schade aan kunnen richten.\nBij een handpistool is het bijvoorbeeld enkel 1.',
+         'desc': 'drie keer een is de schade wat het wapen kan\naanrichten bij dit voorbe eld zou het wapen\ndus 3 keer 1 schade aan kunnen richten.\nBij een handpistool is het bijvoorbeeld enkel 1.',
          'img': '/img/guntegel.png'},
         {'title': 'Landmijn', 
          'desc': 'Dit is een tegel die de speler moet proberen te\nvermijden. Het landen op een landmijn-tegel en\ndeze ook omdraaien, richt schade toe aan de speler.\nUiteraard weet de speler niet van tevoren of het\neen landmijn-tegel is. Als de speler ervoor kiest\nom deze niet om te draaien, blijft hij ongedeerd.',

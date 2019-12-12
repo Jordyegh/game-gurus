@@ -7,7 +7,7 @@ import player_selection
 import manual_screen
 import player_dashboard
 import player_inventory
-
+import fighting_screen
 # functions.py is where all the useful functions are located (It makes your life easier)
 # start_screen.py is for the start screen
 
@@ -39,23 +39,28 @@ def draw():
         player_dashboard.draw()
     elif currentScreen == 'manual_screen':
         manual_screen.draw()
+    elif currentScreen == 'fighting_screen':
+        fighting_screen.draw()
 
     if player_selection.curScreen == 'player_dashboard':
-        currentScreen = 'player_dashboard'
+        #currentScreen = 'player_dashboard'
+        currentScreen = 'fighting_screen'
+        fighting_screen.setup()
     elif player_selection.curScreen == 'manual_screen':
         currentScreen = 'manual_screen'
 
-# def mousePressed():
-#     global currentScreen
+def mousePressed():
+    global currentScreen
 
-#     if currentScreen == 'start':
-#         currentScreen = 'player_selecting'
-#         player_selection.tick = start_screen.tick
-#     elif currentScreen == 'manual_screen':
-#         currentScreen = 'player_selecting'
-#         player_selection.curScreen = ''
-#     else:
-#         elements.mousePressed()
+    if currentScreen == 'start':
+        player_selection.setup()
+        currentScreen = 'player_selecting'
+        player_selection.tick = start_screen.tick
+    elif currentScreen == 'manual_screen':
+        currentScreen = 'player_selecting'
+        player_selection.curScreen = ''
+    else:
+        elements.mousePressed()
 
 def keyPressed():
     elements.keyPressed()
