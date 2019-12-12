@@ -44,8 +44,8 @@ class Button:
         self.borders = {'left': left, 'right': right, 'top': top, 'bottom': bottom}
         
     def destroy(self):
-        for i in range(0, len(elements.elements) - 1):
-            if elements.elements[i] == self:
-                del elements.elements[i]
-                
+        for element in elements.elements:
+            if element == self:
+                elements.elements.remove(element)
+        
         del self
