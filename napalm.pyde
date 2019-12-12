@@ -35,14 +35,13 @@ def draw():
         fighting_screen.draw()
 
     if player_selection.curScreen == 'player_dashboard':
-        #currentScreen = 'player_dashboard'
-        currentScreen = 'fighting_screen'
+        currentScreen = 'player_dashboard'
         player_selection.curScreen = 'none'
         
         for i in range(0, len(elements.elements)):
             elements.elements[0].destroy()
         
-        fighting_screen.setup()
+        player_dashboard.setup()
     elif player_selection.curScreen == 'manual_screen':
         currentScreen = 'manual_screen'
 
