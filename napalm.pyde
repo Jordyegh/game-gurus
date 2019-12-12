@@ -1,3 +1,4 @@
+add_library('sound')
 import functions
 import TextBox
 import elements
@@ -5,8 +6,8 @@ import start_screen
 import player_selection
 import manual_screen
 import player_dashboard
+import player_inventory
 import fighting_screen
-
 # functions.py is where all the useful functions are located (It makes your life easier)
 # start_screen.py is for the start screen
 
@@ -15,6 +16,11 @@ currentScreen = 'start'
 def setup():
     size(1600, 900)
     functions.setup()
+    #player_selection.setup()
+    s = SoundFile(this, 'soundtrack.mp3')
+    s.amp(0.50)
+    s.play()
+    s.loop()
 
 def draw():
     global currentScreen
