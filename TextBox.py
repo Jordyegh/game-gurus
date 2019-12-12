@@ -2,7 +2,7 @@ import functions
 import elements
 
 class TextBox:
-    def __init__(self, placeHolder = '', pos = [], padding = [], fillColor = '', txtColor = '', txtSize = 0, tag = '', initiate = False):
+    def __init__(self, placeHolder = '', pos = [], padding = [], fillColor = '', txtColor = '', txtSize = 0, tag = '', initiate = True, willDraw = True):
         self.type = 'textbox'
         self.placeHolder = placeHolder
         self.pos = pos
@@ -14,6 +14,7 @@ class TextBox:
         self.state = 'ready'
         self.tag = tag
         self.tick = 0
+        self.willDraw = willDraw
         
         if initiate:
             self.initiate()

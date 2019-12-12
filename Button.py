@@ -2,7 +2,7 @@ import functions
 import elements
 
 class Button:
-    def __init__(self, placeHolder = '', pos = [], padding = [], fillColor = '', borderColor = 'none', txtColor = '', hoverColor = '#ffffff', txtSize = 32, initiate = False, linked = []):
+    def __init__(self, placeHolder = '', pos = [], padding = [], fillColor = '', borderColor = 'none', txtColor = '', hoverColor = '#ffffff', txtSize = 32, initiate = False, linked = [], willDraw = True):
         self.type = 'button'
         self.placeHolder = placeHolder
         self.pos = pos
@@ -15,6 +15,7 @@ class Button:
         self.txtSize = 32
         self.state = 'ready'
         self.linked = linked
+        self.willDraw = willDraw
 
         if initiate:
             self.initiate()
