@@ -3,6 +3,7 @@ from TextBox import *
 from Button import *
 from Player import *
 import elements
+import manual_screen
 
 screenSize = [1600, 900]                        # Size of our screen, [0] is Width and [1] is Height
 center = [screenSize[0] / 2, screenSize[1] / 2] # Center of our screen, [0] is X and [1] is Y
@@ -15,20 +16,37 @@ def setup():
     buttons['stimpackDmg'] = Button('/img/stimpackDmg.png', [200, 400], [250, 250])
     buttons['stimpackRange'] = Button('/img/stimpackRange.png', [600, 400], [250, 250])
     buttons['energyDrink'] = Button('/img/energyDrink.png', [1000, 400], [250, 250])
+    buttons['bandageAmount2'] = Button('+2 HP', [1400, 350], [25, 10], '235,255,235', 'none', '0', '200,255,200')
+    buttons['bandageAmount4'] = Button('+4 HP', [1400, 450], [25, 10], '235,255,235', 'none', '0', '200,255,200')
     buttons['bandage'] = Button('/img/bandage.png', [1400, 400], [250, 250])
 def draw():
     global screenSize, center, tick, buttons
     
     addImage('/img/Dashboard_background.jpg', [center[0], 0], [1600, 900])
+    addText('2 extra DMG', [205, 580], '0', 40, 'scorch')
+    addText('2 extra RANGE', [605, 580], '0', 40, 'scorch')
+    addText('Roll the dice twice', [1005, 574], '0', 30, 'scorch')
+    addText('Heal yourself', [1405, 580], '0', 40, 'scorch')
     addText('Player Inventory', [375, 75], '255', 64, 'scorch')
-    
+    addText('2 extra DMG', [200, 575], '255', 40, 'scorch')
+    addText('2 extra RANGE', [600, 575], '255', 40, 'scorch')
+    addText('Roll the dice twice', [1000, 569], '255', 30, 'scorch')
+    addText('Heal yourself', [1400, 575], '255', 40, 'scorch')
+    #print(buttons['stimpackDmg'].state)
     if buttons['stimpackDmg'].state == 'clicked':
-        buttons['stimpackDmg'].willDraw = False
+        buttons['stimpackDmg'].willDraw = True
     if buttons['stimpackRange'].state == 'clicked':
-        buttons['stimpackRange'].willDraw = False
+        buttons['stimpackRange'].willDraw = True
     if buttons['energyDrink'].state == 'clicked':
-        currentScreen = 'dice_system'
-    if buttons['stimpackDmg'].state == 'clicked':
-        buttons['stimpackDmg'].willDraw = False
+        currentScreen = 'dice_system' #The dice may be rolled twice
+    if buttons['bandage'].state == 'clicked':
+        buttons['bandage'].willDraw = False
+    if buttons['bandageAmount2'].state == 'clicked':
+        #Heal 2 and next player.
+        currentScreen = 'player_dashboard' #NEXT PLAYER
+    if buttons['bandageAmount2'].state == 'clicked':
+        #Heal 4 and next player.
+        currentScreen = 'player_dashboard' #NEXT PLAYER
+        
     
     elements.updateElements()

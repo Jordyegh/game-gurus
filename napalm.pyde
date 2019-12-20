@@ -12,6 +12,7 @@ import fighting_screen
 # start_screen.py is for the start screen
 
 currentScreen = 'start'
+test = True
 
 def setup():
     size(1600, 900)
@@ -23,7 +24,7 @@ def setup():
     s.loop()
 
 def draw():
-    global currentScreen
+    global currentScreen, test
 
     fill(255)
     noStroke()
@@ -38,7 +39,12 @@ def draw():
     elif currentScreen == 'manual_screen':
         manual_screen.draw()
     elif currentScreen == 'fighting_screen':
-        fighting_screen.draw()
+        if test:
+            test = False
+            player_inventory.setup()
+        
+        player_inventory.draw()
+        #fighting_screen.draw()
 
     if player_selection.curScreen == 'player_dashboard':
         #currentScreen = 'player_dashboard'
