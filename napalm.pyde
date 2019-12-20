@@ -1,4 +1,4 @@
-add_library('sound')
+#add_library('sound')
 import functions
 import TextBox
 import elements
@@ -26,16 +26,16 @@ def setup():
     global diceSound, soundtrack, creepySoundtrack, gunSound
     size(1600, 900)
     functions.setup()
-    diceSound = SoundFile(this, 'diceRoll.mp3')
-    diceSound.amp(1.0)
+    #diceSound = SoundFile(this, 'diceRoll.mp3')
+    #diceSound.amp(1.0)
     #player_selection.setup()
-    soundtrack = SoundFile(this, 'soundtrackTrimmed.mp3')
-    soundtrack.amp(0.25)
-    soundtrack.play()
-    gunSound = SoundFile(this, 'gunshot.mp3')
-    gunSound.amp(1.0)
-    creepySoundtrack = SoundFile(this, 'creepySoundtrackTrimmed.mp3')
-    creepySoundtrack.amp(0.8)
+    #soundtrack = SoundFile(this, 'soundtrackTrimmed.mp3')
+    #soundtrack.amp(0.25)
+    #soundtrack.play()
+    #gunSound = SoundFile(this, 'gunshot.mp3')
+    #gunSound.amp(1.0)
+    #creepySoundtrack = SoundFile(this, 'creepySoundtrackTrimmed.mp3')
+    #creepySoundtrack.amp(0.8)
 
 
 def draw():
@@ -99,17 +99,17 @@ def draw():
     if dice_system.rollDone == True:
         rollOnce = True
     if dice_system.playSound == True and rollOnce:
-        diceSound.stop()
-        rollOnce = False
-        diceSound.play()
+        #diceSound.stop()
+        #rollOnce = False
+        #diceSound.play()
         dice_system.playsound = False
     if player_selection.stopSoundtrack == True and playOnce:
         print('test')
-        soundtrack.stop()
+        #soundtrack.stop()
         playOnce = False
-        gunSound.play()
-        creepySoundtrack.play()
-        creepySoundtrack.loop()
+        #gunSound.play()
+        #creepySoundtrack.play()
+        #creepySoundtrack.loop()
 
 
 

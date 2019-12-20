@@ -1,4 +1,4 @@
-add_library('sound')
+#add_library('sound')
 from functions import *
 from TextBox import *
 from Button import *
