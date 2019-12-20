@@ -9,10 +9,6 @@ tick = 0                                        # Tick is used like a clock, it 
 buttons = {}
 curScreen = ''
 
-def clearScreen():
-    for i in range(0, len(elements.elements)):
-        elements.elements[0].destroy()
-
 def setup():
     buttons['startDice'] = Button('/img/halfCircle1.png',   [center[0] - 660, center[1]], [350, 500])
     buttons['openInventory'] = Button('/img/halfCircle2.png', [center[0], center[1] + 330], [500, 350])

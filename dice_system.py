@@ -15,6 +15,7 @@ buttons = {}
 def setup():
     global buttons
     
+    buttons['return'] = Button('Return', [100, 65], [25, 15], '#cccccc')
     buttons['dice'] = Button('', [650, center[1] - 50], [300, 300], '#ffffff')
 
 def draw():
@@ -63,10 +64,6 @@ def draw():
         [dots[1][0][0], dots[1][1][1]],
         [dots[1][1][0], dots[1][0][1]]
     ]
-        
-    #fill('#000000')
-    #for coord in dots[(millis() // rollSpeed) % 6]:
-    #    circle(550 + coord[0] * 2, center[1] + coord[1] * 2 - 150, 50)
     
     addText('Click the dice to roll', [650, center[1] + 200], str(25 + toPulse(fade, 220)), 35)
     
@@ -79,7 +76,7 @@ def draw():
         
     fill('#000000')
     
-    if 'dice' in buttons and buttons['dice'].state == 'clicked':
+    if buttons['dice'].state == 'clicked':
         if tick % floor(rollSpeed) == 0:
             oldRoll = roll
             
@@ -92,6 +89,10 @@ def draw():
                 rollSpeed = 1
                 print('done')
                 buttons['dice'].state = 'ready'
+                
+    if buttons['return'].state == 'clicked':
+        curScreen = 'player_dashboard'
+        clearScreen()
                 
     for coord in dots[roll % 6]:
         circle(550 + coord[0] * 2, center[1] + coord[1] * 2 - 150, 50)

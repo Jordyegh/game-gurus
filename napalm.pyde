@@ -36,7 +36,6 @@ def draw():
         player_selection.draw()
     elif currentScreen == 'player_dashboard':
         player_dashboard.draw()
-        #print('fskfjksfk' + str(millis()))
     elif currentScreen == 'manual_screen':
         manual_screen.draw()
     elif currentScreen == 'fighting_screen':
@@ -58,6 +57,10 @@ def draw():
         player_dashboard.curScreen = 'none'
         currentScreen = 'dice_system'
         dice_system.setup()
+    elif dice_system.curScreen == 'player_dashboard':
+        dice_system.curScreen = 'none'
+        currentScreen = 'player_dashboard'
+        player_dashboard.setup()
 
 def mousePressed():
     global currentScreen
