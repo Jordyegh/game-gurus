@@ -12,6 +12,7 @@ buttons = {}
 teams = [[], [], [], []]
 curScreen = ''
 showErrorMsg = ''
+stopSoundtrack = False
 
 def addPlayerButton(team):
     buttons['add_to_team'][team] = Button('Add Player', [300 + (300 * (team % 2)), center[1] - 50 + (200 * (team // 2))], [25, 10], '235,255,235', 'none', '0', '200,255,200', linked = [team])
@@ -47,7 +48,7 @@ def setup():
         addPlayerButton(i)
 
 def draw():
-    global screenSize, center, tick, curScreen, button, showErrorMsg
+    global screenSize, center, tick, curScreen, button, showErrorMsg, stopSoundtrack
 
     flameSpeed = [tick / 3.5, tick / 5]
 
@@ -104,6 +105,7 @@ def draw():
             addPlayerField(button.linked[0])
 
     if buttons['startGame'].state == 'clicked':
+        stopSoundtrack = True
         teamSize = None
         sameSize = True
         totalPlayers = 0
