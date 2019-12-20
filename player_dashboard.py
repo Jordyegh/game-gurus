@@ -10,14 +10,16 @@ buttons = {}
 curScreen = ''
 teams = [[], [], [], []]
 turn = [0, 0]
+mute = False
 
 def setup():
     buttons['startDice'] = Button('/img/halfCircle1.png',   [center[0] - 660, center[1]], [350, 500])
     buttons['openInventory'] = Button('/img/halfCircle3.png', [center[0] + 700, center[1]], [350, 500])
     buttons['startFight'] = Button('/img/halfCircle2.png', [center[0], center[1] + 330], [500, 350])
-
+    buttons['mute'] = Button('Mute', [1500, 65], [25, 10], '235,255,235', 'none', '0', '200,255,200')
+    
 def draw():
-    global screenSize, center, tick, curScreen, turn, teams
+    global screenSize, center, tick, curScreen, turn, teams, mute
     
     addImage('/img/Dashboard_background.jpg', [center[0], 0], [1600, 900])
     
@@ -43,6 +45,16 @@ def draw():
         
     if 'startFight' in buttons and buttons['startFight'].state == 'clicked':
         clearScreen()
+        
+    if buttons['mute'].state == 'clicked':
+        if buttons['mute'].placeHolder == 'Mute':
+            buttons['mute'].placeHolder = 'Unmute'
+            mute = True
+        else:
+            buttons['mute'].placeHolder = 'Mute'
+            mute = False
+            
+        buttons['mute'].state = 'ready'
     
     elements.updateElements()
     

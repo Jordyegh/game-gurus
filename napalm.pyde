@@ -20,6 +20,7 @@ creepySoundtrack = None
 gunSound = None
 rollOnce = True
 playOnce = True #For creepy soundtrack
+muteAll = False
 teams = [[], [], [], []]
 
 def setup():
@@ -39,7 +40,7 @@ def setup():
 
 
 def draw():
-    global currentScreen, test, diceSound, rollOnce, soundtrack, creepySoundtrack, playOnce, gunSound
+    global currentScreen, test, diceSound, rollOnce, soundtrack, creepySoundtrack, playOnce, gunSound, muteAll
 
     fill(255)
     noStroke()
@@ -96,14 +97,17 @@ def draw():
         currentScreen = 'player_dashboard'
         player_dashboard.setup()
 
+    if player_dashboard.mute == True:
+        muteAll = True
+        creepySoundtrack.stop()
     if dice_system.rollDone == True:
         rollOnce = True
-    if dice_system.playSound == True and rollOnce:
+    if dice_system.playSound == True and rollOnce and not muteAll:
         diceSound.stop()
         rollOnce = False
         diceSound.play()
         dice_system.playsound = False
-    if player_selection.stopSoundtrack == True and playOnce:
+    if player_selection.stopSoundtrack == True and playOnce and not muteAll:
         print('test')
         soundtrack.stop()
         playOnce = False
