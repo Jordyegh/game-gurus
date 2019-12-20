@@ -1,4 +1,4 @@
-add_library('sound')
+#add_library('sound')
 import functions
 import TextBox
 import elements
@@ -8,6 +8,7 @@ import manual_screen
 import player_dashboard
 import player_inventory
 import fighting_screen
+import dice_system
 # functions.py is where all the useful functions are located (It makes your life easier)
 # start_screen.py is for the start screen
 
@@ -18,10 +19,10 @@ def setup():
     size(1600, 900)
     functions.setup()
     #player_selection.setup()
-    s = SoundFile(this, 'soundtrack.mp3')
-    s.amp(0.50)
-    s.play()
-    s.loop()
+    #s = SoundFile(this, 'soundtrack.mp3')
+    #s.amp(0.50)
+    #s.play()
+    #s.loop()
 
 def draw():
     global currentScreen, test
@@ -42,21 +43,28 @@ def draw():
         if test:
             test = False
             player_inventory.setup()
-        
+
         player_inventory.draw()
         #fighting_screen.draw()
 
     if player_selection.curScreen == 'player_dashboard':
-        #currentScreen = 'player_dashboard'
-        currentScreen = 'fighting_screen'
+        currentScreen = 'player_dashboard'
         player_selection.curScreen = 'none'
-        
+
         for i in range(0, len(elements.elements)):
             elements.elements[0].destroy()
-        
-        fighting_screen.setup()
+
+        player_dashboard.setup()
     elif player_selection.curScreen == 'manual_screen':
         currentScreen = 'manual_screen'
+    elif player_dashboard.curScreen == 'dice_system':
+        player_dashboard.curScreen = 'none'
+        currentScreen = 'dice_system'
+        dice_system.setup()
+    elif dice_system.curScreen == 'player_dashboard':
+        dice_system.curScreen = 'none'
+        currentScreen = 'player_dashboard'
+        player_dashboard.setup()
 
 def mousePressed():
     global currentScreen

@@ -1,3 +1,5 @@
+import elements
+
 fonts = {}
 images = {}
 
@@ -58,3 +60,7 @@ def addFigure(fig, pos, figSize, figColor, strokeColor = 'none'):
 # toPulse(INPUT DECIMAL|float, INTEGER MAX|int)
 def toPulse(num, maxNum):
     return abs(((floor(num / maxNum) % 2) * maxNum) - (int(num) % maxNum))
+
+def clearScreen():
+    for i in range(0, len(elements.elements)):
+        elements.elements[0].destroy()
