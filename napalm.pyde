@@ -1,4 +1,4 @@
-#add_library('sound')
+add_library('sound')
 import functions
 import TextBox
 import elements
@@ -14,18 +14,31 @@ import dice_system
 
 currentScreen = 'start'
 test = True
+diceSound = None
+soundtrack = None
+creepySoundtrack = None
+gunSound = None
+rollOnce = True
+playOnce = True #For creepy soundtrack
 
 def setup():
+    global diceSound, soundtrack, creepySoundtrack, gunSound
     size(1600, 900)
     functions.setup()
+    diceSound = SoundFile(this, 'diceRoll.mp3')
+    diceSound.amp(1.0)
     #player_selection.setup()
-    #s = SoundFile(this, 'soundtrack.mp3')
-    #s.amp(0.50)
-    #s.play()
-    #s.loop()
-
+    soundtrack = SoundFile(this, 'soundtrackTrimmed.mp3')
+    soundtrack.amp(0.25)
+    soundtrack.play()
+    gunSound = SoundFile(this, 'gunshot.mp3')
+    gunSound.amp(1.0)
+    creepySoundtrack = SoundFile(this, 'creepySoundtrackTrimmed.mp3')
+    creepySoundtrack.amp(0.8)
+    
+    
 def draw():
-    global currentScreen, test
+    global currentScreen, test, diceSound, rollOnce, soundtrack, creepySoundtrack, playOnce, gunSound
 
     fill(255)
     noStroke()
@@ -45,6 +58,7 @@ def draw():
         fighting_screen.draw()
     elif currentScreen == 'dice_system':
         dice_system.draw()
+        
 
     if player_selection.curScreen == 'player_dashboard':
         currentScreen = 'player_dashboard'
@@ -68,14 +82,33 @@ def draw():
         dice_system.curScreen = 'none'
         currentScreen = 'player_dashboard'
         player_dashboard.setup()
-    if player_inventory.curScreen == 'dice_system':
+    elif player_inventory.curScreen == 'dice_system':
         player_inventory.curScreen = 'none'
         currentScreen = 'dice_system'
         dice_system.setup()
-    if player_inventory.curScreen == 'player_dashboard':
+    elif player_inventory.curScreen == 'player_dashboard':
         player_inventory.curScreen = 'none'
         currentScreen = 'player_dashboard'
         player_dashboard.setup()
+    
+    if dice_system.rollDone == True:
+        rollOnce = True        
+    if dice_system.playSound == True and rollOnce:
+        diceSound.stop()
+        rollOnce = False
+        diceSound.play()
+        dice_system.playsound = False
+    if player_selection.stopSoundtrack == True and playOnce:
+        print('test')
+        soundtrack.stop()
+        playOnce = False
+        gunSound.play()
+        creepySoundtrack.play()
+        creepySoundtrack.loop()
+        
+    
+       
+        
 
 def mousePressed():
     global currentScreen

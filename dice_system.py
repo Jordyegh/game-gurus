@@ -1,3 +1,4 @@
+add_library('sound')
 from functions import *
 from TextBox import *
 from Button import *
@@ -11,15 +12,18 @@ curScreen = ''
 rollSpeed = 1
 roll = 1
 buttons = {}
+playSound = False
+rollDone = False
 
 def setup():
-    global buttons
+    global buttons, diceSound
     
     buttons['return'] = Button('Return', [100, 835], [25, 15], '#cccccc')
     buttons['dice'] = Button('', [650, center[1] - 50], [300, 300], '#ffffff')
+    
 
 def draw():
-    global screenSize, center, tick, para, curScreen, rollSpeed, buttons, roll
+    global screenSize, center, tick, para, curScreen, rollSpeed, buttons, roll, playSound, diceSound, rollDone
     
     fade = tick * 2.5
     flameSpeed = [tick / 3.5, tick / 5]
@@ -77,6 +81,9 @@ def draw():
     fill('#000000')
     
     if buttons['dice'].state == 'clicked':
+        if not playSound:
+            playSound = True
+            
         if tick % floor(rollSpeed) == 0:
             oldRoll = roll
             
@@ -88,6 +95,8 @@ def draw():
             if rollSpeed > 10:
                 rollSpeed = 1
                 print('done')
+                playSound = False
+                rollDone = True
                 buttons['dice'].state = 'ready'
                 
     if buttons['return'].state == 'clicked':

@@ -34,7 +34,6 @@ def draw():
     if 'openInventory' in buttons and buttons['openInventory'].state == 'clicked':
         clearScreen()
         curScreen = 'player_inventory'
-        print('df')
         
     if 'startFight' in buttons and buttons['startFight'].state == 'clicked':
         clearScreen()
