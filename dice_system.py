@@ -106,6 +106,9 @@ def draw():
             
     if 'continue' in buttons and buttons['continue'].state == 'clicked':
         clearScreen()
+        del buttons['continue']
+        del buttons['attack']
+        
         player_dashboard.turn = nextTurn(player_dashboard.turn)
         rollResult = None
         curScreen = 'player_dashboard'
@@ -114,6 +117,7 @@ def draw():
         addText('Click the dice to roll', [center[0] - 200, center[1] * 2 - 100], str(25 + toPulse(fade, 220)), 35)
                 
     if 'return' in buttons and buttons['return'].state == 'clicked':
+        rollSpeed = 1
         curScreen = 'player_dashboard'
         clearScreen()
                 
