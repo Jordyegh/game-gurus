@@ -5,6 +5,7 @@ class Player:
         self.name = name
         self.KDRatio = [0, 0]
         self.inventory = []
+        self.collectedKeys = 0
         self.id = id
         
     def destroy(self):

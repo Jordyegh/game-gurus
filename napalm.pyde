@@ -20,6 +20,7 @@ creepySoundtrack = None
 gunSound = None
 rollOnce = True
 playOnce = True #For creepy soundtrack
+teams = [[], [], [], []]
 
 def setup():
     global diceSound, soundtrack, creepySoundtrack, gunSound
@@ -35,8 +36,8 @@ def setup():
     gunSound.amp(1.0)
     creepySoundtrack = SoundFile(this, 'creepySoundtrackTrimmed.mp3')
     creepySoundtrack.amp(0.8)
-    
-    
+
+
 def draw():
     global currentScreen, test, diceSound, rollOnce, soundtrack, creepySoundtrack, playOnce, gunSound
 
@@ -58,11 +59,15 @@ def draw():
         fighting_screen.draw()
     elif currentScreen == 'dice_system':
         dice_system.draw()
-        
 
     if player_selection.curScreen == 'player_dashboard':
         currentScreen = 'player_dashboard'
         player_selection.curScreen = 'none'
+        teams = player_selection.teams
+        player_dashboard.teams = teams
+        functions.teams = teams
+
+        print(teams)
 
         for i in range(0, len(elements.elements)):
             elements.elements[0].destroy()
@@ -90,9 +95,9 @@ def draw():
         player_inventory.curScreen = 'none'
         currentScreen = 'player_dashboard'
         player_dashboard.setup()
-    
+
     if dice_system.rollDone == True:
-        rollOnce = True        
+        rollOnce = True
     if dice_system.playSound == True and rollOnce:
         diceSound.stop()
         rollOnce = False
@@ -105,10 +110,10 @@ def draw():
         gunSound.play()
         creepySoundtrack.play()
         creepySoundtrack.loop()
-        
-    
-       
-        
+
+
+
+
 
 def mousePressed():
     global currentScreen
