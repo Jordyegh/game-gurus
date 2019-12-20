@@ -40,12 +40,7 @@ def draw():
     elif currentScreen == 'manual_screen':
         manual_screen.draw()
     elif currentScreen == 'fighting_screen':
-        if test:
-            test = False
-            player_inventory.setup()
-
-        player_inventory.draw()
-        #fighting_screen.draw()
+        fighting_screen.draw()
 
     if player_selection.curScreen == 'player_dashboard':
         currentScreen = 'player_dashboard'
