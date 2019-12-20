@@ -1,4 +1,6 @@
-import functions
+from functions import *
+from TextBox import *
+from Button import *
 import elements
 
 class Button:

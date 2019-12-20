@@ -8,6 +8,7 @@ import manual_screen
 import player_dashboard
 import player_inventory
 import fighting_screen
+import dice_system
 # functions.py is where all the useful functions are located (It makes your life easier)
 # start_screen.py is for the start screen
 
@@ -35,10 +36,13 @@ def draw():
         player_selection.draw()
     elif currentScreen == 'player_dashboard':
         player_dashboard.draw()
+        #print('fskfjksfk' + str(millis()))
     elif currentScreen == 'manual_screen':
         manual_screen.draw()
     elif currentScreen == 'fighting_screen':
         fighting_screen.draw()
+    elif currentScreen == 'dice_system':
+        dice_system.draw()
 
     if player_selection.curScreen == 'player_dashboard':
         currentScreen = 'player_dashboard'
@@ -50,6 +54,10 @@ def draw():
         player_dashboard.setup()
     elif player_selection.curScreen == 'manual_screen':
         currentScreen = 'manual_screen'
+    elif player_dashboard.curScreen == 'dice_system':
+        player_dashboard.curScreen = 'none'
+        currentScreen = 'dice_system'
+        dice_system.setup()
 
 def mousePressed():
     global currentScreen
