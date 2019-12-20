@@ -15,7 +15,7 @@ buttons = {}
 def setup():
     global buttons
     
-    buttons['return'] = Button('Return', [100, 65], [25, 15], '#cccccc')
+    buttons['return'] = Button('Return', [100, 835], [25, 15], '#cccccc')
     buttons['dice'] = Button('', [650, center[1] - 50], [300, 300], '#ffffff')
 
 def draw():

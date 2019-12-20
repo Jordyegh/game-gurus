@@ -43,6 +43,8 @@ def draw():
         manual_screen.draw()
     elif currentScreen == 'fighting_screen':
         fighting_screen.draw()
+    elif currentScreen == 'dice_system':
+        dice_system.draw()
 
     if player_selection.curScreen == 'player_dashboard':
         currentScreen = 'player_dashboard'
@@ -64,6 +66,14 @@ def draw():
         player_inventory.setup()
     elif dice_system.curScreen == 'player_dashboard':
         dice_system.curScreen = 'none'
+        currentScreen = 'player_dashboard'
+        player_dashboard.setup()
+    if player_inventory.curScreen == 'dice_system':
+        player_inventory.curScreen = 'none'
+        currentScreen = 'dice_system'
+        dice_system.setup()
+    if player_inventory.curScreen == 'player_dashboard':
+        player_inventory.curScreen = 'none'
         currentScreen = 'player_dashboard'
         player_dashboard.setup()
 

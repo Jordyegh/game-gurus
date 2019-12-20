@@ -13,6 +13,7 @@ buttons = {}
 
 def setup():
     global screenSize, center, tick, buttons
+    buttons['return'] = Button('Return', [100, 835], [25, 15], '#cccccc')
     buttons['stimpackDmg'] = Button('/img/stimpackDmg.png', [200, 400], [250, 250])
     buttons['stimpackRange'] = Button('/img/stimpackRange.png', [600, 400], [250, 250])
     buttons['energyDrink'] = Button('/img/energyDrink.png', [1000, 400], [250, 250])
@@ -21,7 +22,7 @@ def setup():
     buttons['bandage'] = Button('/img/bandage.png', [1400, 400], [250, 250])
     
 def draw():
-    global screenSize, center, tick, buttons
+    global screenSize, center, tick, buttons, curScreen
     
     addImage('/img/Dashboard_background.jpg', [center[0], 0], [1600, 900])
     addText('2 extra DMG', [205, 580], '0', 40, 'scorch')
@@ -35,11 +36,15 @@ def draw():
     addText('Heal yourself', [1400, 575], '255', 40, 'scorch')
     #print(buttons['stimpackDmg'].state)
     if buttons['stimpackDmg'].state == 'clicked':
-        buttons['stimpackDmg'].willDraw = True
+        #+2 damage will be added to your weapon for 1 attack.
+        curScreen = 'player_dashboard'
+        clearScreen()
     if buttons['stimpackRange'].state == 'clicked':
-        buttons['stimpackRange'].willDraw = True
+        curScreen = 'player_dashboard'
+        clearScreen()
     if buttons['energyDrink'].state == 'clicked':
-        currentScreen = 'dice_system' #The dice may be rolled twice
+        curScreen = 'dice_system'
+        clearScreen()
     if buttons['bandage'].state == 'clicked':
         buttons['bandage'].willDraw = False
     if buttons['bandageAmount2'].state == 'clicked':
@@ -48,6 +53,9 @@ def draw():
     if buttons['bandageAmount2'].state == 'clicked':
         #Heal 4 and next player.
         currentScreen = 'player_dashboard' #NEXT PLAYER
+    if buttons['return'].state == 'clicked':
+        curScreen = 'player_dashboard'
+        clearScreen()
         
     
     elements.updateElements()
