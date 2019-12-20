@@ -16,6 +16,7 @@ def setup():
     buttons['stimpackRange'] = Button('/img/stimpackRange.png', [600, 400], [250, 250])
     buttons['energyDrink'] = Button('/img/energyDrink.png', [1000, 400], [250, 250])
     buttons['bandage'] = Button('/img/bandage.png', [1400, 400], [250, 250])
+    
 def draw():
     global screenSize, center, tick, buttons
     
