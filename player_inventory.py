@@ -19,6 +19,7 @@ def setup():
     buttons['bandageAmount2'] = Button('+2 HP', [1400, 350], [25, 10], '235,255,235', 'none', '0', '200,255,200')
     buttons['bandageAmount4'] = Button('+4 HP', [1400, 450], [25, 10], '235,255,235', 'none', '0', '200,255,200')
     buttons['bandage'] = Button('/img/bandage.png', [1400, 400], [250, 250])
+    
 def draw():
     global screenSize, center, tick, buttons
     

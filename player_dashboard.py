@@ -11,8 +11,8 @@ curScreen = ''
 
 def setup():
     buttons['startDice'] = Button('/img/halfCircle1.png',   [center[0] - 660, center[1]], [350, 500])
-    buttons['openInventory'] = Button('/img/halfCircle2.png', [center[0], center[1] + 330], [500, 350])
-    buttons['startFight'] = Button('/img/halfCircle3.png', [center[0] + 700, center[1]], [350, 500])
+    buttons['openInventory'] = Button('/img/halfCircle3.png', [center[0] + 700, center[1]], [350, 500])
+    buttons['startFight'] = Button('/img/halfCircle2.png', [center[0], center[1] + 330], [500, 350])
     
     #buttons['openInventory'] = Button('/img/backpack.png', [center[0] - 250, center[1]], [250, 250])
     #buttons['startFight'] = Button('/img/vslogo.png', [center[0] + 250, center[1]], [250, 200])
@@ -33,6 +33,8 @@ def draw():
         
     if 'openInventory' in buttons and buttons['openInventory'].state == 'clicked':
         clearScreen()
+        curScreen = 'player_inventory'
+        print('df')
         
     if 'startFight' in buttons and buttons['startFight'].state == 'clicked':
         clearScreen()
@@ -40,4 +42,5 @@ def draw():
     elements.updateElements()
     
     addImage('/img/dice.png', [center[0] - 660, center[1] - 125], [250, 250])
+    addImage('/img/backpack.png', [center[0] + 660, center[1] - 125], [250, 250])
     
