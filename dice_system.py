@@ -2,6 +2,8 @@ from functions import *
 from TextBox import *
 from Button import *
 import elements
+import player_selection
+import player_dashboard
 import random
 
 screenSize = [1600, 900]                        # Size of our screen, [0] is Width and [1] is Height
@@ -11,21 +13,23 @@ curScreen = ''
 rollSpeed = 1
 roll = 1
 buttons = {}
+rollResult = None
+turn = []
 
 def setup():
     global buttons
     
     buttons['return'] = Button('Return', [100, 65], [25, 15], '#cccccc')
-    buttons['dice'] = Button('', [650, center[1] - 50], [300, 300], '#ffffff')
+    buttons['dice'] = Button('', [600, center[1]], [500, 500], '#ffffff', borderRadius = 30)
 
 def draw():
-    global screenSize, center, tick, para, curScreen, rollSpeed, buttons, roll
+    global screenSize, center, tick, para, curScreen, rollSpeed, buttons, roll, rollResult, turn
     
     fade = tick * 2.5
     flameSpeed = [tick / 3.5, tick / 5]
     addImage('/img/backgroundWoods.png', [center[0], 0], [1600, 900])
-    x = 100
-    y = 100
+    x = 200
+    y = 200
     
     sides = 6
     
@@ -35,8 +39,8 @@ def draw():
         [x / 2, y / 2]
     ]
     dots[1] = [
-        [x / 10, y / 10],
-        [x - x / 10, y - y / 10]
+        [x / 7.5, y / 7.5],
+        [x - x / 7.5, y - y / 7.5]
     ]
     dots[2] = [
         dots[1][0],
@@ -65,8 +69,6 @@ def draw():
         [dots[1][1][0], dots[1][0][1]]
     ]
     
-    addText('Click the dice to roll', [650, center[1] + 200], str(25 + toPulse(fade, 220)), 35)
-    
     addImage('/img/fire.png', [screenSize[0] - 350, screenSize[1] - 175 - toPulse(flameSpeed[0], 50)], [600, 200])
     addImage('/img/fire_reverse.png', [screenSize[0] - 275, screenSize[1] - 175 - toPulse(flameSpeed[1], 75)], [500, 200])
     
@@ -76,7 +78,7 @@ def draw():
         
     fill('#000000')
     
-    if buttons['dice'].state == 'clicked':
+    if buttons['dice'].state == 'clicked' and not rollResult:
         if tick % floor(rollSpeed) == 0:
             oldRoll = roll
             
@@ -87,12 +89,34 @@ def draw():
             
             if rollSpeed > 10:
                 rollSpeed = 1
-                print('done')
                 buttons['dice'].state = 'ready'
+                rollResult = roll + 1
+    
+    fill('#ffffff')
+    
+    if rollResult:
+        addText('You rolled ' + str(rollResult) + '!', [center[0] - 200, 150], '255', 64)
+        
+        if 'return' in buttons:
+            buttons['return'].destroy()
+            del buttons['return']
+            
+            buttons['continue'] = Button('Continue', [center[0] - 300, center[1] * 2 - 100], [25, 15], '#ccffcc')
+            buttons['attack'] = Button('Attack', [center[0] - 100, center[1] * 2 - 100], [25, 15], '#ffcccc')
+            
+    if 'continue' in buttons and buttons['continue'].state == 'clicked':
+        clearScreen()
+        player_dashboard.turn = nextTurn(player_dashboard.turn)
+        rollResult = None
+        curScreen = 'player_dashboard'
+        
+    if buttons['dice'].state != 'clicked' and not rollResult:
+        addText('Click the dice to roll', [center[0] - 200, center[1] * 2 - 100], str(25 + toPulse(fade, 220)), 35)
                 
-    if buttons['return'].state == 'clicked':
+    if 'return' in buttons and buttons['return'].state == 'clicked':
         curScreen = 'player_dashboard'
         clearScreen()
                 
     for coord in dots[roll % 6]:
-        circle(550 + coord[0] * 2, center[1] + coord[1] * 2 - 150, 50)
+        fill('#000000')
+        circle(400 + coord[0] * 2, center[1] + coord[1] * 2 - 200, 100)

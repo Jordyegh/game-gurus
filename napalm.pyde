@@ -13,6 +13,7 @@ import dice_system
 # start_screen.py is for the start screen
 
 currentScreen = 'start'
+teams = [[], [], [], []]
 
 def setup():
     size(1600, 900)
@@ -44,10 +45,15 @@ def draw():
         fighting_screen.draw()
     elif currentScreen == 'dice_system':
         dice_system.draw()
-
+        
     if player_selection.curScreen == 'player_dashboard':
         currentScreen = 'player_dashboard'
         player_selection.curScreen = 'none'
+        teams = player_selection.teams
+        player_dashboard.teams = teams
+        functions.teams = teams
+        
+        print(teams)
         
         for i in range(0, len(elements.elements)):
             elements.elements[0].destroy()
