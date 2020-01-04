@@ -19,6 +19,7 @@ class Button:
         self.linked = linked
         self.willDraw = willDraw
         self.borderRadius = borderRadius
+        self.onHover = False
 
         if initiate:
             self.initiate()

@@ -43,6 +43,7 @@ def draw():
         
     if 'startFight' in buttons and buttons['startFight'].state == 'clicked':
         clearScreen()
+        curScreen = 'fighting_screen'
     
     elements.updateElements()
     

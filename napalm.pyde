@@ -39,7 +39,7 @@ def setup():
 
 
 def draw():
-    global currentScreen, test, diceSound, rollOnce, soundtrack, creepySoundtrack, playOnce, gunSound
+    global currentScreen, test, diceSound, rollOnce, soundtrack, creepySoundtrack, playOnce, gunSound, teams
 
     fill(255)
     noStroke()
@@ -83,16 +83,32 @@ def draw():
         player_dashboard.curScreen = 'none'
         currentScreen = 'player_inventory'
         player_inventory.setup()
-    elif dice_system.curScreen == 'player_dashboard':
-        dice_system.curScreen = 'none'
-        currentScreen = 'player_dashboard'
-        player_dashboard.setup()
+    elif player_dashboard.curScreen == 'fighting_screen':
+        player_dashboard.curScreen = 'none'
+        currentScreen = 'fighting_screen'
+        fighting_screen.teams = teams
+        fighting_screen.turn = player_dashboard.turn
+        fighting_screen.setup()
     elif player_inventory.curScreen == 'dice_system':
         player_inventory.curScreen = 'none'
         currentScreen = 'dice_system'
         dice_system.setup()
-    elif player_inventory.curScreen == 'player_dashboard':
+        
+    
+    if dice_system.curScreen == 'player_dashboard':
+        dice_system.curScreen = 'none'
+        currentScreen = 'player_dashboard'
+        player_dashboard.setup()
+    elif dice_system.curScreen == 'fighting_screen':
+        dice_system.curScreen = 'none'
+        currentScreen = 'fighting_screen'
+        fighting_screen.setup()
+    if player_inventory.curScreen == 'player_dashboard':
         player_inventory.curScreen = 'none'
+        currentScreen = 'player_dashboard'
+        player_dashboard.setup()
+    if fighting_screen.curScreen == 'player_dashboard':
+        fighting_screen.curScreen = 'none'
         currentScreen = 'player_dashboard'
         player_dashboard.setup()
 

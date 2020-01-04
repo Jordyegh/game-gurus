@@ -3,6 +3,8 @@ typing = False
 
 def updateElements():
     for element in elements:
+        element.onHover = False
+        
         if element.willDraw:
             element.initiate()
         
@@ -11,6 +13,7 @@ def updateElements():
                     element.fillColor = '#444444'
                 elif element.type == 'button':
                     element.fillColor = element.hoverColor
+                    element.onHover = True
             elif hasattr(element, 'origFillColor'):
                 if element.fillColor != element.origFillColor and element.state != 'active':
                     element.fillColor = element.origFillColor

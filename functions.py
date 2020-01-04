@@ -70,6 +70,9 @@ def nextTurn(turn):
     if((turn[1] + 1) >= len(teams[turn[0]])):
         turn[0] = turn[0] + 1 if (turn[0] + 1) < len(teams) else 0
         turn[1] = 0
+        
+        if len(teams[turn[0]]) <= 0:
+            nextTurn(turn)
     else:
         turn[1] = turn[1] + 1
         
@@ -80,3 +83,42 @@ def nextTurn(turn):
             print('Team: ' + str(team) + ' player: ' + player.name)
     
     return turn
+
+def getDicePos(x, y):
+    dots = [[0, 0] for i in range(6)]
+
+    dots[0] = [
+        [x / 2, y / 2]
+    ]
+    dots[1] = [
+        [x / 7.5, y / 7.5],
+        [x - x / 7.5, y - y / 7.5]
+    ]
+    dots[2] = [
+        dots[1][0],
+        dots[0][0],
+        dots[1][1]
+    ]
+    dots[3] = [
+        dots[1][0],
+        dots[1][1],
+        [dots[1][0][0], dots[1][1][1]],
+        [dots[1][1][0], dots[1][0][1]]
+    ]
+    dots[4] = [
+        dots[1][0],
+        dots[1][1],
+        dots[0][0],
+        [dots[1][0][0], dots[1][1][1]],
+        [dots[1][1][0], dots[1][0][1]]
+    ]
+    dots[5] = [
+        dots[1][0],
+        dots[1][1],
+        [dots[1][0][0], dots[0][0][1]],
+        [dots[1][1][0], dots[0][0][1]],
+        [dots[1][0][0], dots[1][1][1]],
+        [dots[1][1][0], dots[1][0][1]]
+    ]
+    
+    return dots

@@ -116,8 +116,6 @@ def draw():
                     teamSize = len(team)
                 elif teamSize != len(team):
                     sameSize = False
-
-                    break
                 
             totalPlayers = totalPlayers + len(team)
 
