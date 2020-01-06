@@ -66,8 +66,7 @@ def draw():
         teams = player_selection.teams
         player_dashboard.teams = teams
         functions.teams = teams
-
-        print(teams)
+        player_inventory.teams = teams
 
         for i in range(0, len(elements.elements)):
             elements.elements[0].destroy()
@@ -82,6 +81,7 @@ def draw():
     elif player_dashboard.curScreen == 'player_inventory':
         player_dashboard.curScreen = 'none'
         currentScreen = 'player_inventory'
+        player_inventory.turn = player_dashboard.turn
         player_inventory.setup()
     elif player_dashboard.curScreen == 'fighting_screen':
         player_dashboard.curScreen = 'none'
@@ -93,6 +93,7 @@ def draw():
         player_inventory.curScreen = 'none'
         currentScreen = 'dice_system'
         dice_system.setup()
+        dice_system.doubleThrow = True
         
     
     if dice_system.curScreen == 'player_dashboard':
@@ -102,6 +103,8 @@ def draw():
     elif dice_system.curScreen == 'fighting_screen':
         dice_system.curScreen = 'none'
         currentScreen = 'fighting_screen'
+        fighting_screen.teams = teams
+        fighting_screen.turn = player_dashboard.turn
         fighting_screen.setup()
     if player_inventory.curScreen == 'player_dashboard':
         player_inventory.curScreen = 'none'

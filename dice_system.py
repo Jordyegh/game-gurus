@@ -19,6 +19,8 @@ turn = []
 playSound = False
 rollDone = False
 dots = None
+doubleThrow = False
+oldResult = 0
 
 def setup():
     global buttons, diceSound, dots
@@ -28,7 +30,7 @@ def setup():
     dots = functions.getDicePos(200, 200)
 
 def draw():
-    global screenSize, center, tick, para, curScreen, rollSpeed, buttons, roll, playSound, diceSound, rollDone, rollResult, turn, dots
+    global screenSize, center, tick, para, curScreen, rollSpeed, buttons, roll, playSound, diceSound, rollDone, rollResult, turn, dots, doubleThrow, oldResult
 
     fade = tick * 2.5
     flameSpeed = [tick / 3.5, tick / 5]
@@ -67,14 +69,31 @@ def draw():
     fill('#ffffff')
 
     if rollResult:
-        addText('You rolled ' + str(rollResult) + '!', [center[0] - 200, 150], '255', 64)
+        if oldResult > 0:
+            addText('You rolled ' + str(oldResult) + ' + ' + str(rollResult) + ' = ' + str(oldResult + rollResult) + '!', [center[0] - 200, 150], '255', 64)
+            
+            if doubleThrow:
+                buttons['continue'] = Button('Continue', [center[0] - 300, center[1] * 2 - 100], [25, 15], '#ccffcc')
+                buttons['attack'] = Button('Attack', [center[0] - 100, center[1] * 2 - 100], [25, 15], '#ffcccc')
+            
+            doubleThrow = False
+        else:
+            addText('You rolled ' + str(rollResult) + '!', [center[0] - 200, 150], '255', 64)
+        
+        if doubleThrow:
+            addText('Your energy drink allowed you to roll the dice again!', [center[0] - 200, center[1] * 2 - 100], '255', 32)
+            
+            if buttons['dice'].state == 'clicked':
+                oldResult = rollResult
+                rollResult = 0
 
         if 'return' in buttons:
             buttons['return'].destroy()
             del buttons['return']
 
-            buttons['continue'] = Button('Continue', [center[0] - 300, center[1] * 2 - 100], [25, 15], '#ccffcc')
-            buttons['attack'] = Button('Attack', [center[0] - 100, center[1] * 2 - 100], [25, 15], '#ffcccc')
+            if not doubleThrow:
+                buttons['continue'] = Button('Continue', [center[0] - 300, center[1] * 2 - 100], [25, 15], '#ccffcc')
+                buttons['attack'] = Button('Attack', [center[0] - 100, center[1] * 2 - 100], [25, 15], '#ffcccc')
 
     if 'continue' in buttons and buttons['continue'].state == 'clicked':
         clearScreen()
