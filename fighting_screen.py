@@ -30,15 +30,23 @@ weapons = [
 
 def initWeaponTiles():
     buttons['weapons'] = list()
+    buttons['smoke'] = list()
+    buttons['armor'] = list()
     
     for i in range(0, 2):
         buttons['weapons'].append({})
+        buttons['smoke'].append({})
+        buttons['armor'].append({})
         
         for y in range(0, 3):
             for x in range(0, 3):
                 if y != 2 or x != 2:
                     id = y * 3 + x
                     buttons['weapons'][i][id] = Button('/img/' + weapons[id]['src'], [center[0] - 450 + 150 * x + 575 * i, center[1] - 150 + (y * 150)], [125, 125])
+        
+            buttons['armor'][i][y] = Button('/img/armor_' + str(y + 1) + '.jpeg', [center[0] - 650 + 1275 * i, center[1] - 150 + (y * 150)], [125, 125])
+        
+        buttons['smoke'][i] = Button('/img/smoke_grenade.png', [center[0] - 150 + 575 * i, center[1] + 150], [125, 125])
 
 def setup():
     global buttons, turn, dots
@@ -79,6 +87,9 @@ def draw():
             addFigure('rect', [center[0] - 300, center[1]], [475, 475], '#000000')
             addFigure('rect', [center[0] + 275, center[1]], [475, 475], '#000000')
             
+            addFigure('rect', [center[0] - 650, center[1]], [175, 475], '#000000')
+            addFigure('rect', [center[0] + 625, center[1]], [175, 475], '#000000')
+            
             for p in range(0, 2):
                 for i in buttons['weapons'][p]:
                     el = buttons['weapons'][p][i]
@@ -99,6 +110,10 @@ def draw():
                             rolls[p].append(0)
                         print(rolls)
                         break
+                    
+                for button in buttons['smoke']:
+                    if button.onHover:
+                        addFigure('rect', button.pos, [135, 135], '#ff9900')
         else:
             roll = roll + 0.25
             
