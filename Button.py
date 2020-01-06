@@ -20,6 +20,7 @@ class Button:
         self.willDraw = willDraw
         self.borderRadius = borderRadius
         self.onHover = False
+        self.canClick = True
 
         if initiate:
             self.initiate()

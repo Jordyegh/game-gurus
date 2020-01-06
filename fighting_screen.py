@@ -29,13 +29,14 @@ weapons = [
 ]
 
 def initWeaponTiles():
-    buttons['weapons'] = list()
-    buttons['smoke'] = list()
-    buttons['armor'] = list()
+    global buttons
+    
+    buttons['weapons'] = []
+    buttons['smoke'] = {}
+    buttons['armor'] = []
     
     for i in range(0, 2):
         buttons['weapons'].append({})
-        buttons['smoke'].append({})
         buttons['armor'].append({})
         
         for y in range(0, 3):
@@ -47,6 +48,8 @@ def initWeaponTiles():
             buttons['armor'][i][y] = Button('/img/armor_' + str(y + 1) + '.jpeg', [center[0] - 650 + 1275 * i, center[1] - 150 + (y * 150)], [125, 125])
         
         buttons['smoke'][i] = Button('/img/smoke_grenade.png', [center[0] - 150 + 575 * i, center[1] + 150], [125, 125])
+        
+    print(buttons['smoke'][0])
 
 def setup():
     global buttons, turn, dots
@@ -98,22 +101,29 @@ def draw():
                         addFigure('rect', el.pos, [135, 135], '#ff0000')
                         
                     if el.state == 'clicked':
+                        print('smoke=', buttons['smoke'])
                         for u in range(0, 8):
                             if u in buttons['weapons'][p] and buttons['weapons'][p][u] != buttons['weapons'][p][i]:
                                 buttons['weapons'][p][u].destroy()
                                 del buttons['weapons'][p][u]
+                                
+                        buttons['smoke'][p].destroy()
+                        del buttons['smoke'][p]
                                 
                         chosenWeapons[p] = weapons[i]
                         rolls[p] = []
                         
                         for i in range(0, weapons[i]['shots']):
                             rolls[p].append(0)
-                        print(rolls)
+                        
+                        el.state = 'ready'
+                        el.canClick = False
+                        
                         break
                     
-                for button in buttons['smoke']:
-                    if button.onHover:
-                        addFigure('rect', button.pos, [135, 135], '#ff9900')
+                for id in buttons['smoke']:
+                    if buttons['smoke'][id].onHover:
+                        addFigure('rect', buttons['smoke'][id].pos, [135, 135], '#ff9900')
         else:
             roll = roll + 0.25
             

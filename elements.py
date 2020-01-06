@@ -29,7 +29,7 @@ def mousePressed():
                         element.placeHolder = ''
                         element.state = 'active'
                         typing = True
-                    elif element.type == 'button':
+                    elif element.type == 'button' and element.canClick:
                         element.state = 'clicked'
                 
 def keyPressed():
