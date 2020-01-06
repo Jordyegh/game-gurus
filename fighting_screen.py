@@ -15,7 +15,9 @@ versus = [None, None]
 dots = None 
 roll = 0
 rolls = [[], []]
+ended = 0
 chosenWeapons = [None, None]
+chosenArmor = [0, 0]
 weaponSelection = False
 weapons = [
            {'src': '9mm.jpeg', 'name': '9mm Pistol', 'damage': 1, 'shots': 1, 'steps': 0},
@@ -48,8 +50,19 @@ def initWeaponTiles():
             buttons['armor'][i][y] = Button('/img/armor_' + str(y + 1) + '.jpeg', [center[0] - 650 + 1275 * i, center[1] - 150 + (y * 150)], [125, 125])
         
         buttons['smoke'][i] = Button('/img/smoke_grenade.png', [center[0] - 150 + 575 * i, center[1] + 150], [125, 125])
-        
-    print(buttons['smoke'][0])
+    
+def resetScreen():
+    global curScreen, headerMsg, weaponSelection, chosenArmor, versus, chosenWeapons, turn, roll
+    
+    clearScreen()
+    chosenWeapons = [None, None]
+    chosenArmor = [0, 0]
+    versus = [None, None]
+    weaponSelection = False
+    headerMsg = 'CHOOSE WHO TO FIGHT'
+    nextTurn(turn)
+    curScreen = 'player_dashboard'
+    roll = 0
 
 def setup():
     global buttons, turn, dots
@@ -71,7 +84,7 @@ def setup():
     dots = functions.getDicePos(100, 100)
 
 def draw():
-    global teams, buttons, curScreen, headerMsg, versus, weaponSelection, dots, roll, rolls
+    global teams, buttons, curScreen, headerMsg, versus, weaponSelection, dots, roll, rolls, chosenWeapons, chosenArmor, ended
     
     addImage('/img/Dashboard_background.jpg', [center[0], 0], [1600, 900])
     
@@ -80,9 +93,14 @@ def draw():
             
     if weaponSelection:
         for i in range(0, 2):
-                addFigure('rect', [center[0] - 300 + 575 * i, 165], [465, 65], '0')
-                addFigure('rect', [center[0] - 300 + 575 * i, 165], [450, 50], '50,200,50')
-                addImage('/img/noise.png', [center[0] - 300 + 575 * i, 140], [465, 50])
+            healthWidth = int(450 * (versus[i].health / 5.0))
+            
+            if healthWidth <= 0:
+                healthWidth = 1
+                
+            addFigure('rect', [center[0] - 300 + 575 * i, 165], [465, 65], '0')
+            addFigure('rect', [center[0] - 300 + 575 * i, 165], [healthWidth, 50], '50,200,50')
+            addImage('/img/noise.png', [center[0] - 300 + 575 * i, 140], [healthWidth + 15, 50])
                 
         if chosenWeapons[0] == None or chosenWeapons[1] == None:
             addText('Select your weapon', [center[0] - 10, center[1] * 2 - 95], '#000000', 48, 'scorch')
@@ -90,8 +108,8 @@ def draw():
             addFigure('rect', [center[0] - 300, center[1]], [475, 475], '#000000')
             addFigure('rect', [center[0] + 275, center[1]], [475, 475], '#000000')
             
-            addFigure('rect', [center[0] - 650, center[1]], [175, 475], '#000000')
-            addFigure('rect', [center[0] + 625, center[1]], [175, 475], '#000000')
+            addFigure('rect', [center[0] - 650, center[1]], [175, (475 if chosenArmor[0] == 0 else 175)], '#000000')
+            addFigure('rect', [center[0] + 625, center[1]], [175, (475 if chosenArmor[1] == 0 else 175)], '#000000')
             
             for p in range(0, 2):
                 for i in buttons['weapons'][p]:
@@ -124,6 +142,29 @@ def draw():
                 for id in buttons['smoke']:
                     if buttons['smoke'][id].onHover:
                         addFigure('rect', buttons['smoke'][id].pos, [135, 135], '#ff9900')
+                        
+                    if buttons['smoke'][id].state == 'clicked':
+                        buttons['smoke'][id].state = 'ready'
+                        resetScreen()
+                        
+                for id in buttons['armor'][p]:
+                    button = buttons['armor'][p][id]
+                    
+                    if button.onHover:
+                        addFigure('rect', button.pos, [135, 135], '#00aaff')
+                        
+                    if button.state == 'clicked':
+                        for i in buttons['armor'][p]:
+                            if buttons['armor'][p][id] != buttons['armor'][p][i]:
+                                buttons['armor'][p][i].destroy()
+                                del buttons['armor'][p][i]
+                                
+                        button.state = 'ready'
+                        button.canClick = False
+                        button.pos[1] = center[1]
+                        chosenArmor[p]= (id + 1)
+                        break
+                        
         else:
             roll = roll + 0.25
             
@@ -141,20 +182,46 @@ def draw():
                     form = -((weapon['shots'] - 1) * 125 / 2) + shot * 125
                     pos = [center[0] - 300 + 575 * (side % 2) + form, center[1] + 150]
                     addFigure('rect', pos, [115, 115], '#ffffff')
-                    
+                
                     if rolls[side][shot] < 20 + 20 * shot:
-                        rolls[side][shot] = rolls[side][shot] + 0.25
+                        if versus[0].health > 0 and versus[1].health > 0:
+                            rolls[side][shot] = rolls[side][shot] + 0.25
                         
                         if rolls[side][shot] >= 20 + 20 * shot:
                             rolls[side][shot] = rolls[side][shot] + random(0, 5)
-                    elif shot >= (weapon['shots']-1):
-                        addText('Done', [center[0] - 300 + 575 * (side % 2), pos[1] + 150], '#ffffff', 64)
+                            
+                            damage = weapon['damage'] - chosenArmor[1 - side] if (rolls[side][shot] % 6) <= 3 else weapon['damage']
+                            
+                            if damage <= 0:
+                                continue
+                            
+                            versus[1 - side].health = versus[1 - side].health - damage
+                            
+                            if shot >= (weapon['shots'] - 1):
+                                ended = ended + 1
+                            
+                            if versus[1 - side].health <= 0 or ended >= 2:
+                                buttons['continue'] = Button('Continue', center, [25, 15], '#cccccc')
+                                ended = 0
+                    else:
+                        if (rolls[side][shot] % 6) > 3:
+                            addText('HIT!', [pos[0], pos[1] + 125], '#ccffcc', 32)
+                        else:
+                            addText('B. HIT!', [pos[0], pos[1] + 125], '#ffcccc', 32)
+                        
+                        if shot >= (weapon['shots'] - 1):
+                            addText('OUT OF AMMO', [center[0] - 300 + 575 * (side % 2), pos[1] + 225], '#ffffff', 64)
                     
                     for coord in dots[floor(rolls[side][shot]) % 6]:
                         fill('#000000')
                         circle(pos[0] - 50 + coord[0], pos[1] - 50 + coord[1], 15)
                     
                 side = side + 1
+                
+            if 'continue' in buttons and buttons['continue'].state == 'clicked':
+                del buttons['continue']
+                
+                resetScreen()
     else:
         for id in buttons['player_buttons']:
             button = buttons['player_buttons'][id]
