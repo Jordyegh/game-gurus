@@ -59,7 +59,6 @@ def draw():
 
             if rollSpeed > 10:
                 rollSpeed = 1
-                print('done')
                 playSound = False
                 rollDone = True
                 buttons['dice'].state = 'ready'

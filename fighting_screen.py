@@ -146,6 +146,7 @@ def draw():
                     if buttons['smoke'][id].state == 'clicked':
                         buttons['smoke'][id].state = 'ready'
                         resetScreen()
+                        curScreen = 'player_dashboard_newturn'
                         
                 for id in buttons['armor'][p]:
                     button = buttons['armor'][p][id]
@@ -222,6 +223,7 @@ def draw():
                 del buttons['continue']
                 
                 resetScreen()
+                curScreen = 'player_dashboard_newturn'
     else:
         for id in buttons['player_buttons']:
             button = buttons['player_buttons'][id]

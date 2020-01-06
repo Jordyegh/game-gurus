@@ -111,6 +111,11 @@ def draw():
         fighting_screen.curScreen = 'none'
         currentScreen = 'player_dashboard'
         player_dashboard.setup()
+    if fighting_screen.curScreen == 'player_dashboard_newturn':
+        fighting_screen.curScreen = 'none'
+        currentScreen = 'player_dashboard'
+        player_dashboard.setup()
+        dice_system.rollResult = None
 
     if dice_system.rollDone == True:
         rollOnce = True
