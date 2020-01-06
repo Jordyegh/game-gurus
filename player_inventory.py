@@ -23,7 +23,8 @@ def setup():
 def draw():
     global screenSize, center, tick, buttons, curScreen, turn
     
-    addImage('/img/Dashboard_background.jpg', [center[0], 0], [1600, 900])
+    addImage('/img/backgroundWoods.png', [center[0], 0], [1600, 900])
+    #addImage('/img/Dashboard_background.jpg', [center[0], 0], [1600, 900])
     addText('+2 Damage', [center[0] - 405, 580], '0', 40, 'scorch')
     addText('Roll Twice', [center[0] + 5, 574], '0', 30, 'scorch')
     addText('Heal Yourself', [center[0] + 405, 580], '0', 40, 'scorch')
@@ -31,13 +32,13 @@ def draw():
     addText('Player Inventory', [center[0], 85], '0', 64, 'scorch')
     addText('Player Inventory', [center[0] - 10, 75], '255', 64, 'scorch')
     
-    addText('2 extra DMG', [center[0] - 400, 575], '255', 40, 'scorch')
+    addText('1 Extra Damage', [center[0] - 400, 575], '255', 40, 'scorch')
     addText('Roll the dice twice', [center[0], 569], '255', 30, 'scorch')
     addText('Heal yourself', [center[0] + 400, 575], '255', 40, 'scorch')
-    #print(buttons['stimpackDmg'].state)
+    
     if buttons['stimpackDmg'].state == 'clicked':
-        #+2 damage will be added to your weapon for 1 attack.
-        curScreen = 'player_dashboard'
+        #+1 damage will be added to your weapon
+        curScreen = 'fighting_screen'
         clearScreen()
     if buttons['energyDrink'].state == 'clicked':
         curScreen = 'dice_system'

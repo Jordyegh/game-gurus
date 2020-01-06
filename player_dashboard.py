@@ -15,22 +15,29 @@ def setup():
     buttons['startDice'] = Button('/img/halfCircle1.png',   [center[0] - 660, center[1]], [350, 500])
     buttons['openInventory'] = Button('/img/halfCircle3.png', [center[0] + 700, center[1]], [350, 500])
     buttons['startFight'] = Button('/img/halfCircle2.png', [center[0], center[1] + 330], [500, 350])
+    buttons['restart'] = Button('Restart Game', [center[0] * 2 - 150, 25], [5, 5])
 
 def draw():
     global screenSize, center, tick, curScreen, turn, teams
     
     addImage('/img/Dashboard_background.jpg', [center[0], 0], [1600, 900])
     
-    addText('Player Dashboard', [390, 75], '255', 64, 'scorch')
+    addText('Player Dashboard', [center[0] - 10, 80], '0', 64, 'scorch')
+    addText('Player Dashboard', [center[0], 75], '255', 64, 'scorch')
     
     addText(teams[turn[0]][turn[1]].name + '\'s Turn', [center[0] - 5, 210], '0', 64, 'scorch')
     addText(teams[turn[0]][turn[1]].name + '\'s Turn', [center[0], 200], '255', 64, 'scorch')
     
-    addText('0  KEYS', [center[0] - 5, center[1] + 10], '0', 64, 'scorch')
-    addText('0  KEYS', [center[0], center[1]], '255', 64, 'scorch')
+    #addText('0  KEYS', [center[0] - 5, center[1] + 10], '0', 64, 'scorch')
+    #addText('0  KEYS', [center[0], center[1]], '255', 64, 'scorch')
     
-    addFigure('rect', [center[0], 275], [615, 65], '0')
-    addFigure('rect', [center[0], 275], [600, 50], '50,200,50')
+    healthWidth = int(600 * (teams[turn[0]][turn[1]].health / 5.0))
+            
+    if healthWidth <= 0:
+        healthWidth = 1
+    
+    addFigure('rect', [center[0], 275], [healthWidth + 15, 65], '0')
+    addFigure('rect', [center[0], 275], [healthWidth, 50], '50,200,50')
     addImage('/img/noise.png', [center[0], 243], [615, 65])
     
     if 'startDice' in buttons and buttons['startDice'].state == 'clicked':
@@ -44,6 +51,10 @@ def draw():
     if 'startFight' in buttons and buttons['startFight'].state == 'clicked':
         clearScreen()
         curScreen = 'fighting_screen'
+        
+    if buttons['restart'].state == 'clicked':
+        clearScreen()
+        curScreen = 'napalm'
     
     elements.updateElements()
     

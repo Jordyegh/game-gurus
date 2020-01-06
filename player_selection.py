@@ -39,6 +39,10 @@ def addPlayerField(team):
         buttons['add_to_team'][team] = None
 
 def setup():
+    nameBoxes = []
+    curScreen = ''
+    showErrorMsg = ''
+
     buttons['startGame'] = Button('START GAME', [screenSize[0] - 350, 200], [50, 25], '200', 'none', '0')
     buttons['openManual'] = Button('Manual', [100, 50], [25, 10], '200', 'none', '0')
     buttons['add_to_team'] = [None, None, None, None]
@@ -129,6 +133,15 @@ def draw():
             showErrorMsg = 'Teams are not equal size!'
 
         buttons['startGame'].state = 'ready'
+        
+        temp = {}
+        
+        for textBox in nameBoxes:
+            id = int(textBox.tag[-1])
+            print(id, teams)
+            print(temp)
+            teams[id][(1 if id in temp else 0)].name = (textBox.placeHolder)
+            temp[id] = 1
 
     if buttons['openManual'].state == 'clicked':
         buttons['openManual'].state = 'ready'

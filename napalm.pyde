@@ -110,6 +110,13 @@ def draw():
         player_inventory.curScreen = 'none'
         currentScreen = 'player_dashboard'
         player_dashboard.setup()
+    if player_inventory.curScreen == 'fighting_screen':
+        player_inventory.curScreen = 'none'
+        currentScreen = 'fighting_screen'
+        fighting_screen.extraDamage = 2
+        fighting_screen.teams = teams
+        fighting_screen.turn = player_dashboard.turn
+        fighting_screen.setup()
     if fighting_screen.curScreen == 'player_dashboard':
         fighting_screen.curScreen = 'none'
         currentScreen = 'player_dashboard'
@@ -119,6 +126,16 @@ def draw():
         currentScreen = 'player_dashboard'
         player_dashboard.setup()
         dice_system.rollResult = None
+        
+    if player_dashboard.curScreen == 'napalm':
+        player_dashboard.curScreen = 'none'
+        currentScreen = 'start'
+        teams = [[], [], [], []]
+        player_dashboard.turn = [0, 0]
+        player_selection.teams = teams
+        player_selection.buttons.clear()
+        player_selection.nameBoxes = []
+        player_dashboard.buttons.clear()
 
     if dice_system.rollDone == True:
         rollOnce = True

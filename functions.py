@@ -73,6 +73,10 @@ def nextTurn(turn):
         
         if len(teams[turn[0]]) <= 0:
             nextTurn(turn)
+            
+        if teams[turn[0]][turn[1]].health <= 0:
+            teams[turn[0]][turn[1]].health = 5
+            nextTurn(turn)
     else:
         turn[1] = turn[1] + 1
         

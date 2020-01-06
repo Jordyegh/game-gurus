@@ -100,6 +100,7 @@ def draw():
         del buttons['continue']
         del buttons['attack']
 
+        doubleThrow = False
         player_dashboard.turn = nextTurn(player_dashboard.turn)
         rollResult = None
         curScreen = 'player_dashboard'
@@ -109,6 +110,7 @@ def draw():
         del buttons['continue']
         del buttons['attack']
         
+        doubleThrow = False
         curScreen = 'fighting_screen'
 
     if buttons['dice'].state != 'clicked' and not rollResult:
@@ -117,6 +119,7 @@ def draw():
     if 'return' in buttons and buttons['return'].state == 'clicked':
         rollSpeed = 1
         curScreen = 'player_dashboard'
+        doubleThrow = False
         clearScreen()
 
     for coord in dots[roll % 6]:

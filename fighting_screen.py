@@ -16,6 +16,7 @@ dots = None
 roll = 0
 rolls = [[], []]
 ended = 0
+extraDamage = 0
 chosenWeapons = [None, None]
 chosenArmor = [0, 0]
 weaponSelection = False
@@ -76,15 +77,16 @@ def setup():
         
         if x != turn[0]:
             for player in team:
-                buttons['player_buttons'][player.id] = Button(player.name, [center[0] - 400 + x * 200, center[1] - 50 + y * 100], [35, 10])
-                y = y + 1
+                if player.health > 0:
+                    buttons['player_buttons'][player.id] = Button(player.name, [center[0] - 400 + x * 200, center[1] - 50 + y * 100], [35, 10])
+                    y = y + 1
         
         x = x + 1
         
     dots = functions.getDicePos(100, 100)
 
 def draw():
-    global teams, buttons, curScreen, headerMsg, versus, weaponSelection, dots, roll, rolls, chosenWeapons, chosenArmor, ended
+    global teams, buttons, curScreen, headerMsg, versus, weaponSelection, dots, roll, rolls, chosenWeapons, chosenArmor, ended, extraDamage
     
     addImage('/img/Dashboard_background.jpg', [center[0], 0], [1600, 900])
     
@@ -119,7 +121,6 @@ def draw():
                         addFigure('rect', el.pos, [135, 135], '#ff0000')
                         
                     if el.state == 'clicked':
-                        print('smoke=', buttons['smoke'])
                         for u in range(0, 8):
                             if u in buttons['weapons'][p] and buttons['weapons'][p][u] != buttons['weapons'][p][i]:
                                 buttons['weapons'][p][u].destroy()
@@ -179,6 +180,13 @@ def draw():
             
             side = 0
             for weapon in chosenWeapons:
+                
+                for i in buttons['armor'][side]:
+                    if (i + 1) != chosenArmor[side]:
+                        buttons['armor'][side][i].destroy()
+                        del buttons['armor'][side][i]
+                        break
+                
                 for shot in range(0, weapon['shots']):
                     form = -((weapon['shots'] - 1) * 125 / 2) + shot * 125
                     pos = [center[0] - 300 + 575 * (side % 2) + form, center[1] + 150]
@@ -244,6 +252,7 @@ def draw():
                 initWeaponTiles()
             
     if 'return' in buttons and buttons['return'].state == 'clicked':
+        extraDamage = 0
         curScreen = 'player_dashboard'
         clearScreen()
     
