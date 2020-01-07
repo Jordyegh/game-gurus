@@ -138,8 +138,6 @@ def draw():
         
         for textBox in nameBoxes:
             id = int(textBox.tag[-1])
-            print(id, teams)
-            print(temp)
             teams[id][(1 if id in temp else 0)].name = (textBox.placeHolder)
             temp[id] = 1
 
