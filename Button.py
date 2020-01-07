@@ -1,8 +1,10 @@
-import functions
+from functions import *
+from TextBox import *
+from Button import *
 import elements
 
 class Button:
-    def __init__(self, placeHolder = '', pos = [], padding = [], fillColor = '#eeeeee', borderColor = 'none', txtColor = '#000000', hoverColor = '#ffffff', txtSize = 32, initiate = False, linked = [], willDraw = True):
+    def __init__(self, placeHolder = '', pos = [], padding = [], fillColor = '#eeeeee', borderColor = 'none', txtColor = '#000000', hoverColor = '#ffffff', txtSize = 32, initiate = False, linked = [], willDraw = True, borderRadius = 0):
         self.type = 'button'
         self.placeHolder = placeHolder
         self.pos = pos
@@ -16,6 +18,9 @@ class Button:
         self.state = 'ready'
         self.linked = linked
         self.willDraw = willDraw
+        self.borderRadius = borderRadius
+        self.onHover = False
+        self.canClick = True
 
         if initiate:
             self.initiate()
@@ -30,8 +35,7 @@ class Button:
             functions.addImage(self.placeHolder, self.pos, self.padding, True)
             txtWidth = 0
         else:
-            functions.addFigure('rect', self.pos, [txtWidth + self.padding[0], self.txtSize + self.padding[1]], self.fillColor, 'none' if self.borderColor == 'none' else self.borderColor)
-    
+            functions.addFigure('rect', self.pos, [txtWidth + self.padding[0], self.txtSize + self.padding[1]], self.fillColor, 'none' if self.borderColor == 'none' else self.borderColor, borderRadius = self.borderRadius)
             if len(self.placeHolder) > 0:
                 functions.addText(self.placeHolder, [self.pos[0], self.pos[1] + self.txtSize / 2 - 5], self.txtColor, self.txtSize)
     

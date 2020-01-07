@@ -11,6 +11,8 @@ nameBoxes = []
 buttons = {}
 teams = [[], [], [], []]
 curScreen = ''
+showErrorMsg = ''
+stopSoundtrack = False
 
 def addPlayerButton(team):
     buttons['add_to_team'][team] = Button('Add Player', [300 + (300 * (team % 2)), center[1] - 50 + (200 * (team // 2))], [25, 10], '235,255,235', 'none', '0', '200,255,200', linked = [team])
@@ -37,6 +39,10 @@ def addPlayerField(team):
         buttons['add_to_team'][team] = None
 
 def setup():
+    nameBoxes = []
+    curScreen = ''
+    showErrorMsg = ''
+
     buttons['startGame'] = Button('START GAME', [screenSize[0] - 350, 200], [50, 25], '200', 'none', '0')
     buttons['openManual'] = Button('Manual', [100, 50], [25, 10], '200', 'none', '0')
     buttons['add_to_team'] = [None, None, None, None]
@@ -46,7 +52,7 @@ def setup():
         addPlayerButton(i)
 
 def draw():
-    global screenSize, center, tick, curScreen, button
+    global screenSize, center, tick, curScreen, button, showErrorMsg, stopSoundtrack
 
     flameSpeed = [tick / 3.5, tick / 5]
 
@@ -103,8 +109,10 @@ def draw():
             addPlayerField(button.linked[0])
 
     if buttons['startGame'].state == 'clicked':
+        stopSoundtrack = True
         teamSize = None
         sameSize = True
+        totalPlayers = 0
 
         for team in teams:
             if len(team) > 0:
@@ -112,23 +120,35 @@ def draw():
                     teamSize = len(team)
                 elif teamSize != len(team):
                     sameSize = False
-
-                    break
+                
+            totalPlayers = totalPlayers + len(team)
 
         if teamSize == None:
-            print('You may not have empty teams!')
+            showErrorMsg = 'You may not have empty teams!'
+        elif totalPlayers < 2:
+            showErrorMsg = 'There are not enough players!'
         elif sameSize:
-            print('All teams have the same size')
+            curScreen = 'player_dashboard'
         else:
-            print('Error: team size is not equal')
+            showErrorMsg = 'Teams are not equal size!'
 
         buttons['startGame'].state = 'ready'
-        #curScreen = 'player_dashboard'
-        curScreen = 'player_dashboard'
+        
+        temp = {}
+        
+        for textBox in nameBoxes:
+            id = int(textBox.tag[-1])
+            print(id, teams)
+            print(temp)
+            teams[id][(1 if id in temp else 0)].name = (textBox.placeHolder)
+            temp[id] = 1
 
     if buttons['openManual'].state == 'clicked':
         buttons['openManual'].state = 'ready'
         curScreen = 'manual_screen'
+        
+    if len(showErrorMsg) > 0:
+        addText(showErrorMsg, [screenSize[0] - 350, 150], '#ff0000', 35)
 
     tick = tick + 1
 
