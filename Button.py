@@ -2,7 +2,7 @@ import functions
 import elements
 
 class Button:
-    def __init__(self, placeHolder = '', pos = [], padding = [], fillColor = '', borderColor = 'none', txtColor = '', hoverColor = '#ffffff', txtSize = 32, initiate = False, linked = [], willDraw = True):
+    def __init__(self, placeHolder = '', pos = [], padding = [], fillColor = '#eeeeee', borderColor = 'none', txtColor = '#000000', hoverColor = '#ffffff', txtSize = 32, initiate = False, linked = [], willDraw = True):
         self.type = 'button'
         self.placeHolder = placeHolder
         self.pos = pos
@@ -44,8 +44,8 @@ class Button:
         self.borders = {'left': left, 'right': right, 'top': top, 'bottom': bottom}
         
     def destroy(self):
-        for i in range(0, len(elements.elements) - 1):
-            if elements.elements[i] == self:
-                del elements.elements[i]
-                
+        for element in elements.elements:
+            if element == self:
+                elements.elements.remove(element)
+        
         del self

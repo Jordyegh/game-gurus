@@ -46,7 +46,7 @@ def setup():
         addPlayerButton(i)
 
 def draw():
-    global screenSize, center, tick, curScreen
+    global screenSize, center, tick, curScreen, button
 
     flameSpeed = [tick / 3.5, tick / 5]
 
