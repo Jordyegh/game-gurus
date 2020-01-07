@@ -36,7 +36,7 @@ def draw():
     if healthWidth <= 0:
         healthWidth = 1
     
-    addFigure('rect', [center[0], 275], [healthWidth + 15, 65], '0')
+    addFigure('rect', [center[0], 275], [600 + 15, 65], '0')
     addFigure('rect', [center[0], 275], [healthWidth, 50], '50,200,50')
     addImage('/img/noise.png', [center[0], 243], [615, 65])
     

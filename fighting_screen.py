@@ -27,7 +27,7 @@ weapons = [
            {'src': 'p90.jpeg', 'name': 'P90 SMG', 'damage': 1, 'shots': 4, 'steps': -1},
            {'src': 'assault_rifle.jpeg', 'name': 'Assault Rifle', 'damage': 2, 'shots': 1, 'steps': -1},
            {'src': 'ak47.jpeg', 'name': 'AK47 Rifle', 'damage': 3, 'shots': 1, 'steps': -1},
-           {'src': 'lmg.jpeg', 'name': 'Light Machine Gun', 'damage': 3, 'shots': 3, 'steps': -2},
+           {'src': 'lmg.jpeg', 'name': 'Light Machine Gun', 'damage': 2, 'shots': 3, 'steps': -2},
            {'src': 'sniper_rifle.jpeg', 'name': 'Sniper Rifle', 'damage': 4, 'shots': 1, 'steps': -3}
 ]
 
@@ -206,10 +206,12 @@ def draw():
                             
                             versus[1 - side].health = versus[1 - side].health - damage
                             
+                            print(shot, weapon['shots'] - 1)
                             if shot >= (weapon['shots'] - 1):
                                 ended = ended + 1
-                            
-                            if versus[1 - side].health <= 0 or ended >= 2:
+                                print('Out of ammo, ended: ', ended)
+                                
+                            if versus[1 - side].health <= 0 or floor(ended) >= 2:
                                 buttons['continue'] = Button('Continue', center, [25, 15], '#cccccc')
                                 ended = 0
                     else:
