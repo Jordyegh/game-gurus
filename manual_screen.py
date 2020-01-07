@@ -8,22 +8,22 @@ center = [screenSize[0] / 2, screenSize[1] / 2] # Center of our screen, [0] is X
 tick = 0                                        # Tick is used like a clock, it gets incremented each frame, this can be useful for animations
 para = [
         {'title': 'Weapon tile', 
-         'desc': '3x1 is the damage of the weapon\nfor this example, the weapon will do 1 damage for\n3 times.The ruler stands for the range of the weapon.\nThe steps shows how many steps you have\nto stap back after using your the weapon.',
+         'desc': '3x1 is the damage of the weapon\nfor this example, the weapon will do 1 damage for\n3 times.The ruler stands for the range of the weapon.\nThe steps shows how many steps you have\nto step back after using your the weapon.',
          'img': '/img/guntegel.png'},
         {'title': 'Landmine', 
          'desc': 'The player must try to avoid the landmine.\nLanding on a landmine and also turning it around,\ncauses damage to the player.\nThe player does not know the locations\nof the landmines beforehand. If the player chooses not \nto turn it over,he remains unharmed.\n',
          'img': '/img/landmijn.png'},
         {'title': 'Smoke Grenade', 
-         'desc': 'A Smoke Grenade helps the player escaping a fight.',
+         'desc': 'A Smoke Grenade helps the player escape a fight.',
          'img': '/img/rookbom.png'},
         {'title': 'Stim Pack', 
-         'desc': 'With a stim pack you can get extra range&damage\nThis effect lasts for 1 turn.\nYou must use the stim pack before the start of your turn.',
+         'desc': 'With a stim pack you can get extra range or damage\nThis effect lasts for 1 turn.\nYou must use the stim pack before the start of your turn.',
          'img': '/img/stimpack.png'},
         {'title': 'Bandage', 
          'desc': 'This item heals the player\n(not more than the maximum health)\nthere are different levels of healing,\n for example +2 or +4. If you use a bandage,\nyour turn will be over.',
          'img': '/img/pleistertegel.png'},
-        {'title': 'Armour', 
-        'desc': 'This item gives your extra health,more than\nthe maximum of 5 health you are allowed to\nhave.The tiling will show how much protection you\nwill get.The player must dice in order to have the armour\nworking,If you get a number between 1-3, the armour will\nNOT work.It will only work if you get a number between\n4-6.',
+        {'title': 'Armor', 
+        'desc': 'This item gives you extra health,more than\nthe maximum of 5 health you are allowed to\nhave.The tile itself will show how much protection you\nwill get.The player must dice in order to have the armour\nworking,If you get a number between 1-3, the armour will\nNOT work.It will only work if you get a number between\n4-6.',
          'img': '/img/armor.png'}
         ]
 
