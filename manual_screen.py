@@ -7,23 +7,23 @@ screenSize = [1600, 900]                        # Size of our screen, [0] is Wid
 center = [screenSize[0] / 2, screenSize[1] / 2] # Center of our screen, [0] is X and [1] is Y
 tick = 0                                        # Tick is used like a clock, it gets incremented each frame, this can be useful for animations
 para = [
-        {'title': 'Wapentegel', 
-         'desc': 'drie keer een is de schade wat het wapen kan\naanrichten bij dit voorbe eld zou het wapen\ndus 3 keer 1 schade aan kunnen richten.\nBij een handpistool is het bijvoorbeeld enkel 1.',
+        {'title': 'Weapon tile', 
+         'desc': '3x1 is the damage of the weapon\nfor this example, the weapon will do 1 damage for\n3 times.The ruler stands for the range of the weapon.\nThe steps shows how many steps you have\nto step back after using your the weapon.',
          'img': '/img/guntegel.png'},
-        {'title': 'Landmijn', 
-         'desc': 'Dit is een tegel die de speler moet proberen te\nvermijden. Het landen op een landmijn-tegel en\ndeze ook omdraaien, richt schade toe aan de speler.\nUiteraard weet de speler niet van tevoren of het\neen landmijn-tegel is. Als de speler ervoor kiest\nom deze niet om te draaien, blijft hij ongedeerd.',
+        {'title': 'Landmine', 
+         'desc': 'The player must try to avoid the landmine.\nLanding on a landmine and also turning it around,\ncauses damage to the player.\nThe player does not know the locations\nof the landmines beforehand. If the player chooses not \nto turn it over,he remains unharmed.\n',
          'img': '/img/landmijn.png'},
-        {'title': 'Rookbom', 
-         'desc': 'Als een speler met iemand een gevecht aan wilt\ngaan en de juiste range op zijn wapen heeft om\nook daadwerkelijk te schieten, is dit de enige\nitem waardoor je niet aangevallen kunt worden.',
+        {'title': 'Smoke Grenade', 
+         'desc': 'A Smoke Grenade helps the player escape a fight.',
          'img': '/img/rookbom.png'},
-        {'title': 'Energy', 
-         'desc': 'Met een stimpack krijg je een aanvalsbonus. Deze\ngeldt voor 1 beurt. Je kunt met een stimpack\nextra range krijgen of extra schade. Je moet deze\ninzetten voordat je je beurt begint.\n',
-         'img': '/img/energy.png'},
-        {'title': 'Pleister', 
-         'desc': 'Dit item kan je health points terug geven\n(niet meer dan je maximale levens).\nEr zijn verschillende sterkte pleisters,\ndus de ene kan bijvoorbeeld zorgen voor\neen plus twee en de ander voor een plus 4.\nAls je pleisters gebruikt is je beurt voorbij.\n',
+        {'title': 'Stim Pack', 
+         'desc': 'With a stim pack you can get extra range or damage\nThis effect lasts for 1 turn.\nYou must use the stim pack before the start of your turn.',
+         'img': '/img/stimpack.png'},
+        {'title': 'Bandage', 
+         'desc': 'This item heals the player\n(not more than the maximum health)\nthere are different levels of healing,\n for example +2 or +4. If you use a bandage,\nyour turn will be over.',
          'img': '/img/pleistertegel.png'},
         {'title': 'Armor', 
-         'desc': 'Dit item biedt je de mogelijkheid om meer\nhealth points te hebben dan de maximale\n5 levens die je hebt. Bij de tegel\nwordt aangeduid hoeveel extra bescherming\nje hebt. De armor werkt maar voor 50% van de\ntijd, je moet dobbelen. Dobbel je 1 t/m 3 dan\nwerkt hij niet. 4 t/m 6 werkt hij wel.',
+        'desc': 'This item gives you extra health,more than\nthe maximum of 5 health you are allowed to\nhave.The tile itself will show how much protection you\nwill get.The player must dice in order to have the armour\nworking,If you get a number between 1-3, the armour will\nNOT work.It will only work if you get a number between\n4-6.',
          'img': '/img/armor.png'}
         ]
 
@@ -46,7 +46,7 @@ def draw():
                 addDescription(para[id]['title'], para[id]['desc'], [250 + x * 700, 200 + y * 200], para[id]['img'])
     
     addText('Manual screen', [375, 75], '255', 64, 'scorch')
-    addText('Tegels', [130, 175], '255', 34)
+    addText('Tiles', [130, 175], '255', 34)
     
     addText('Click to go next', [660, center[1] + 390], str(25 + toPulse(fade, 220)), 35)
     
