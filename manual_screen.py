@@ -24,7 +24,7 @@ para = [
          'img': '/img/pleistertegel.png'},
         {'title': 'Armor', 
         'desc': 'This item gives you extra health,more than\nthe maximum of 5 health you are allowed to\nhave.The tile itself will show how much protection you\nwill get.The player must dice in order to have the armour\nworking,If you get a number between 1-3, the armour will\nNOT work.It will only work if you get a number between\n4-6.',
-         'img': '/img/armor.png'}
+        'img': '/img/armor.png'}
         ]
 
 def addDescription(title = 'Title', desc = 'Description', pos = [100, 100], img = '/img/guntegel.png'):
@@ -46,8 +46,9 @@ def draw():
                 addDescription(para[id]['title'], para[id]['desc'], [250 + x * 700, 200 + y * 200], para[id]['img'])
     
     addText('Manual screen', [375, 75], '255', 64, 'scorch')
-    addText('Tiles', [130, 175], '255', 34)
+    addText('', [130, 175], '255', 34)
     
     addText('Click to go next', [660, center[1] + 390], str(25 + toPulse(fade, 220)), 35)
     
     tick = tick + 1
+                       # Size of our screen, [0] is Width and [1] is Height
