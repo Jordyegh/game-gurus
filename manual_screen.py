@@ -3,7 +3,7 @@ from TextBox import *
 from Button import *
 import elements
 
-screenSize = [1600, 900]                        # Size of our screen, [0] is Width and [1] is Height
+screenSize = [1400, 900]                        # Size of our screen, [0] is Width and [1] is Height
 center = [screenSize[0] / 2, screenSize[1] / 2] # Center of our screen, [0] is X and [1] is Y
 tick = 0                                        # Tick is used like a clock, it gets incremented each frame, this can be useful for animations
 para = [
@@ -32,23 +32,48 @@ def addDescription(title = 'Title', desc = 'Description', pos = [100, 100], img 
     addText(desc, [pos[0], pos[1] + 20], '255', 18)
     addImage(img, [pos[0] + 300, pos[1]], [150,150])
 
-def draw():
+def draw(manualPage):
     global screenSize, center, tick, para
 
     fade = tick * 2.5
-    addImage('/img/backgroundWoods.png', [center[0], 0], [1600, 900])
+    addImage('/img/backgroundWoods.png', [center[0], 0], [1900, 900])
     
-    for y in range(0, 3):
-        for x in range(0, 2):
-            id = x + y * 2
-            
-            if id < len(para):
-                addDescription(para[id]['title'], para[id]['desc'], [250 + x * 700, 200 + y * 200], para[id]['img'])
+    # Use 'manualPage' with an 'if' condition to show the correctly page
     
-    addText('Manual screen', [375, 75], '255', 64, 'scorch')
-    addText('', [130, 175], '255', 34)
+    if manualPage==0:
+        for y in range(0, 3):
+            for x in range(0, 2):
+                id = x + y * 2
+                
+                if id < len(para):
+                    addDescription(para[id]['title'], para[id]['desc'], [250 + x * 700, 200 + y * 200], para[id]['img'])
+        
+        addText('Manual screen', [375, 75], '255', 64, 'scorch')
+        addText('', [130, 175], '255', 34)
     
+    if manualPage==1:
+        img = loadImage("/img/Board.png")
+        img.resize(width/2,0)
+        image(img,width/4,20)
+        
+        fill(255)
+        textAlign(CENTER,TOP)
+        textSize(22)
+        text("The board game is split into 6x6 square tiles. In the 4 corners of the board are the places where the keys are located and in the center of the board is where you will find the bunker (The finish). There are gates around the bunkers that the player must open with a key. The quantity of the keys that are required to open the gates varies per game. For every player playing there is 1 key on the board (max 4). You always need at least 1 key to open the bunker. If you play with 4 teams, there will be 4 keys in the game and you will have to get 2 to open the gate. The players are free to choose which keys they want to get in the game (see image above).",
+             width/10-80, height/2, width/2-20,height)
+        
+    if manualPage==2:
+        img = loadImage("/img/Dashboard.png")
+        img.resize(width/2,0)
+        imageMode(CENTER)
+        image(img,width/2,height/2)
+        
+    textAlign(LEFT, BASELINE)
+    imageMode(CORNER)
     addText('Click to go next', [660, center[1] + 390], str(25 + toPulse(fade, 220)), 35)
     
     tick = tick + 1
+    
+    
                        # Size of our screen, [0] is Width and [1] is Height
+                       
