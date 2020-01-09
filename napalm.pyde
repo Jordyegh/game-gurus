@@ -132,11 +132,14 @@ def draw():
         fighting_screen.curScreen = 'none'
         currentScreen = 'player_dashboard'
         player_dashboard.setup()
+        dice_system.rollResult = None
+        dice_system.doubleThrow = False
     if fighting_screen.curScreen == 'player_dashboard_newturn':
         fighting_screen.curScreen = 'none'
         currentScreen = 'player_dashboard'
         player_dashboard.setup()
         dice_system.rollResult = None
+        dice_system.doubleThrow = False
         
     if player_dashboard.curScreen == 'napalm':
         player_dashboard.curScreen = 'none'
@@ -156,7 +159,6 @@ def draw():
         #diceSound.play()
         dice_system.playsound = False
     if player_selection.stopSoundtrack == True and playOnce:
-        print('test')
         #soundtrack.stop()
         playOnce = False
         #gunSound.play()
