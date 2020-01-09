@@ -59,7 +59,7 @@ def draw(manualPage):
         fill(255)
         textAlign(CENTER,TOP)
         textSize(22)
-        text("The board game is split into 6x6 square tiles. In the 4 corners of the board are the places where the keys are located and in the center of the board is where you will find the bunker (The finish). There are gates around the bunkers that the player must open with a key. The quantity of the keys that are required to open the gates varies per game. For every player playing there is 1 key on the board (max 4). You always need at least 1 key to open the bunker. If you play with 4 teams, there will be 4 keys in the game and you will have to get 2 to open the gate. The players are free to choose which keys they want to get in the game (see image above).",
+        text("The board game is split into 6x6 square tiles. In the 4 corners of the board are the places where the keys are located and in the center of the board is where you will find the bunker (The finish). There are gates around the bunkers that the player must open with a key. The quantity of the keys that are required to open the gates varies per game. For every player playing there is 1 key on the board (max 4). You always need at least 1 key to open the bunker. If you play with 4 teams, there will be 4 keys in the game and you will have to get 2 to open the gate. The players are free to choose which keys they want to get in the game.(see image above)",
              width/10-80, height/2, width/2-20,height)
         
     if manualPage==2:
