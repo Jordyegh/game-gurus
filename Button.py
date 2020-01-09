@@ -53,39 +53,3 @@ class Button:
                 elements.elements.remove(element)
         
         del self
-        
-class ButtonTemplate:
-    
-    def __init__(self, posX, posY, width, height, text, textSize, textColor, xAlign, yAlign, id):
-        self.posX = posX
-        self.posY = posY
-        self.width = width
-        self.height = height
-        self.text = text
-        self.textSize = textSize
-        self.textColor = textColor
-        self.xAlign = xAlign
-        self.yAlign = yAlign
-        self.id = id
-    
-    def Show(self):
-        # Button box
-        rectMode(CENTER)
-        noFill()
-        stroke(self.textColor)
-        strokeWeight(2)
-        rect(self.posX, self.posY,self.width, self.height)
-        
-        # Button text
-        fill(self.textColor)
-        textSize(self.textSize)
-        textAlign(self.xAlign,self.yAlign)
-        text(self.text, self.posX, self.posY)
-        
-    def CheckClick(self, px, py):
-        if px>self.posX-self.width/2 and px<self.posX+self.width/2:
-            if py>self.posY-self.height/2 and py<self.posY+self.height/2:
-                println("Pressed!")
-                return True;
-        return False;
-        

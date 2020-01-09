@@ -9,7 +9,6 @@ import player_dashboard
 import player_inventory
 import fighting_screen
 import dice_system
-import Button as btn
 # functions.py is where all the useful functions are located (It makes your life easier)
 # start_screen.py is for the start screen
 
@@ -23,11 +22,8 @@ gunSound = None
 rollOnce = True
 playOnce = True #For creepy soundtrack
 
-listButtonsManual = [] # List of buttons
-manualPage = 0 # Page counter
-
 def setup():
-    global diceSound, soundtrack, creepySoundtrack, gunSound, listButtons
+    global diceSound, soundtrack, creepySoundtrack, gunSound
     size(1600, 900)
     functions.setup()
     #diceSound = SoundFile(this, 'diceRoll.mp3')
@@ -40,11 +36,7 @@ def setup():
     #gunSound.amp(1.0)
     #creepySoundtrack = SoundFile(this, 'creepySoundtrackTrimmed.mp3')
     #creepySoundtrack.amp(0.8)
-    
-    # Create and add buttons to the list
-    listButtonsManual.append(btn.ButtonTemplate(width-90, height-35, 150, 40, "NEXT", 14, color(255,255,255), CENTER, CENTER, 1))
-    listButtonsManual.append(btn.ButtonTemplate(width-90, height-35, 150, 40, "NEXT", 14, color(255,255,255), CENTER, CENTER, 1))
-    listButtonsManual.append(btn.ButtonTemplate(width-90, height-35, 150, 40, "CLOSE", 14, color(255,255,255), CENTER, CENTER, 1))
+
 
 def draw():
     global currentScreen, test, diceSound, rollOnce, soundtrack, creepySoundtrack, playOnce, gunSound, teams
@@ -62,10 +54,7 @@ def draw():
     elif currentScreen == 'player_inventory':
         player_inventory.draw()
     elif currentScreen == 'manual_screen':
-        manual_screen.draw(manualPage)
-        
-        # Show current button of the current page
-        listButtonsManual[manualPage].Show()
+        manual_screen.draw()
     elif currentScreen == 'fighting_screen':
         fighting_screen.draw()
     elif currentScreen == 'dice_system':
@@ -162,34 +151,20 @@ def draw():
         #gunSound.play()
         #creepySoundtrack.play()
         #creepySoundtrack.loop()
-    
 
 
-    # Reset properties
-    rectMode(CORNER)
-    textAlign(LEFT, BASELINE)
+
 
 
 def mousePressed():
-    global currentScreen, listButtonsManual, manualPage
-    
+    global currentScreen
+
     if currentScreen == 'start':
         player_selection.setup()
         currentScreen = 'player_selecting'
         player_selection.tick = start_screen.tick
     elif currentScreen == 'manual_screen':
-        
-        # Check click of the current button
-        if listButtonsManual[manualPage].CheckClick(mouseX, mouseY):
-            
-            # Next page
-            manualPage+=1
-            
-            # Over the limit, go to the menu
-            if manualPage > 2:
-                manualPage=0
-                currentScreen = 'player_selecting'
-            
+        currentScreen = 'player_selecting'
         player_selection.curScreen = ''
     else:
         elements.mousePressed()
