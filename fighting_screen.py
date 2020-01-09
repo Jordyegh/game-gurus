@@ -15,6 +15,7 @@ versus = [None, None]
 dots = None 
 roll = 0
 rolls = [[], []]
+outOfAmmo = [False, False]
 ended = 0
 extraDamage = 0
 chosenWeapons = [None, None]
@@ -86,7 +87,7 @@ def setup():
     dots = functions.getDicePos(100, 100)
 
 def draw():
-    global teams, buttons, curScreen, headerMsg, versus, weaponSelection, dots, roll, rolls, chosenWeapons, chosenArmor, ended, extraDamage
+    global teams, buttons, curScreen, headerMsg, versus, weaponSelection, dots, roll, rolls, chosenWeapons, chosenArmor, ended, extraDamage, outOfAmmo
     
     addImage('/img/Dashboard_background.jpg', [center[0], 0], [1600, 900])
     
@@ -187,6 +188,7 @@ def draw():
                         del buttons['armor'][side][i]
                         break
                 
+                maxShots = weapon['shots'] - 1
                 for shot in range(0, weapon['shots']):
                     form = -((weapon['shots'] - 1) * 125 / 2) + shot * 125
                     pos = [center[0] - 300 + 575 * (side % 2) + form, center[1] + 150]
@@ -206,14 +208,17 @@ def draw():
                             
                             versus[1 - side].health = versus[1 - side].health - damage
                             
-                            print(shot, weapon['shots'] - 1)
-                            if shot >= (weapon['shots'] - 1):
+                            print(weapon['name'], shot, maxShots)
+                            if shot >= maxShots:
                                 ended = ended + 1
                                 print('Out of ammo, ended: ', ended)
                                 
                             if versus[1 - side].health <= 0 or floor(ended) >= 2:
-                                buttons['continue'] = Button('Continue', center, [25, 15], '#cccccc')
-                                ended = 0
+                                if not 'continue' in buttons:
+                                    buttons['continue'] = Button('Continue', center, [25, 15], '#cccccc')
+                                    ended = 0
+                                    outOfAmmo[0] = False
+                                    outOfAmmo[1] = False
                     else:
                         if (rolls[side][shot] % 6) > 3:
                             addText('HIT!', [pos[0], pos[1] + 125], '#ccffcc', 32)
@@ -222,6 +227,13 @@ def draw():
                         
                         if shot >= (weapon['shots'] - 1):
                             addText('OUT OF AMMO', [center[0] - 300 + 575 * (side % 2), pos[1] + 225], '#ffffff', 64)
+                            outOfAmmo[side] = True
+                            
+                        if outOfAmmo[0] and outOfAmmo[1] and not 'continue' in buttons:
+                            buttons['continue'] = Button('Continue', center, [25, 15], '#cccccc')
+                            ended = 0
+                            outOfAmmo[0] = False
+                            outOfAmmo[1] = False
                     
                     for coord in dots[floor(rolls[side][shot]) % 6]:
                         fill('#000000')
